@@ -1,4 +1,15 @@
 class ApplicationController < ActionController::Base
+before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  #ユーザー登録時、任意のカラムを登録できる設定
+  def configure_permitted_parameters
+    added_attrs = [ :email, :password, :password_confirmation, :name ]
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
+    devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
+  end
 
   private
 
