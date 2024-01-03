@@ -11,13 +11,17 @@ ja:
       user: "ユーザ"
   devise:
     confirmations:
+      confirmed: メールアドレスが確認できました。
       new:
-        resend_confirmation_instructions: "アカウント確認メール再送"
+        resend_confirmation_instructions: アカウント確認メール再送
+      send_instructions: アカウントの有効化について数分以内にメールでご連絡します。
+      send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     mailer:
       confirmation_instructions:
-        action: "アカウント確認"
-        greeting: "ようこそ、%{recipient}さん!"
-        instruction: "次のリンクでメールアドレスの確認が完了します:"
+        action: メールアドレスの確認
+        greeting: "%{recipient}様"
+        instruction: 以下のリンクをクリックし、メールアドレスの確認手続を完了させてください。
+        subject: "アカウントの有効化のご案内"
       reset_password_instructions:
         action: "パスワード変更"
         greeting: "こんにちは、%{recipient}さん!"
@@ -57,13 +61,14 @@ ja:
         sign_in: "ログイン"
     shared:
       links:
-        back: "戻る"
-        didn_t_receive_confirmation_instructions: "アカウント確認のメールを受け取っていませんか?"
-        didn_t_receive_unlock_instructions: "アカウントの凍結解除方法のメールを受け取っていませんか?"
-        forgot_your_password: "パスワードを忘れましたか?"
-        sign_in: "ログイン"
+        back: 戻る
+        didn_t_receive_confirmation_instructions: アカウント確認のメールを受け取っていませんか?
+        didn_t_receive_unlock_instructions: アカウントの凍結解除方法のメールを受け取っていませんか?
+        forgot_your_password: パスワードを忘れましたか?
+        sign_in: ログイン
         sign_in_with_provider: "%{provider}でログイン"
-        sign_up: "アカウント登録"
+        sign_up: 新規登録
+      minimum_password_length: "（6~20桁の半角英数字）"
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
