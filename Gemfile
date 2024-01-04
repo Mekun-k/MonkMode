@@ -61,3 +61,8 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'dotenv-rails'
+
+gem "omniauth-google-oauth2"  ## Google認証
+gem "omniauth-twitter"  ##Twitter認証
+gem "omniauth-facebook" ## Facebook認証
+gem "omniauth-rails_csrf_protection" ## どの認証でも必要
