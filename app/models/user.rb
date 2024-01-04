@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
 
+  has_many :sns_credential, dependent: :destroy
+
   #パスワードなしでユーザー編集するためのメソッド
   def update_without_current_password(params, *options)
     params.delete(:current_password)
