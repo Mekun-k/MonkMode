@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_many :sns_credential, dependent: :destroy
 
+  private
+
   #パスワードなしでユーザー編集するためのメソッド
   def update_without_current_password(params, *options)
     params.delete(:current_password)
@@ -20,5 +22,12 @@ class User < ApplicationRecord
     result = update_attributes(params, *options)
     clean_up_passwords
     result
+  end
+
+  def self.from_omniauth(auth)
+    find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[12]
+    end
   end
 end
