@@ -2,6 +2,8 @@
   <%= link_to "ログイン", new_session_path(resource_name) %><br />
 <% end %>
 
+  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <%= link_to "アカウント作成", new_registration_path(resource_name) %><br />
 <% end %>
