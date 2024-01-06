@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable
 
+  GUEST_USER_EMAIL = 'guest@example.com'.freeze
+
   #パスワードなしでユーザー編集するためのメソッド
   def update_without_current_password(params, *options)
     params.delete(:current_password)
@@ -20,7 +22,7 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    find_or_create_by!(email: User::GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64(n = 10)
       user.name = "ゲスト"
       user.confirmed_at = Time.now
