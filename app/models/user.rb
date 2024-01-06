@@ -6,6 +6,9 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable,
          :omniauthable, omniauth_providers: %i[google_oauth2 twitter facebook]
 
+  GUEST_USER_EMAIL = 'guest@example.com'.freeze
+
+  #パスワードなしでユーザー編集するためのメソッド
   has_many :sns_credential, dependent: :destroy
 
   def skip_confirmation!
@@ -26,6 +29,14 @@ class User < ApplicationRecord
     result = update_attributes(params, *options)
     clean_up_passwords
     result
+  end
+
+  def self.guest
+    find_or_create_by!(email: User::GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64(n = 10)
+      user.name = "ゲスト"
+      user.confirmed_at = Time.now
+    end
   end
 
   def self.from_omniauth(auth)

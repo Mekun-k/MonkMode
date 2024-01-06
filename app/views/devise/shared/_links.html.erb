@@ -8,6 +8,10 @@
   <%= button_to "Sign in with Facebook", omniauth_authorize_path(:user, :facebook), data: { turbo: false } %><br />
 <% end %>
 
+<%- if controller_name != 'users/sessions' %>
+  <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %><br />
+<% end %>
+
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <%= link_to "アカウント作成", new_registration_path(resource_name) %><br />
 <% end %>

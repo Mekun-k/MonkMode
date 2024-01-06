@@ -1,5 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
+  before_action :ensure_normal_user, only: %i[update destroy]
 
   def new
     super
@@ -14,6 +15,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       flash[:alert] = "ユーザー登録に失敗しました。"
       render action: :new and return
+    end
+  end
+
+  def ensure_normal_user
+    if resource.email == User::GUEST_USER_EMAIL
+      redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
     end
   end
 

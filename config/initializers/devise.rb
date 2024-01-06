@@ -1,5 +1,4 @@
 Devise.setup do |config|
-  ## ここからが ユーザー登録認証機能
   config.mailer = 'Users::Mailer'
   config.mailer_sender = 'mekunyauchi@gmail.com'
   require 'devise/orm/active_record'
@@ -10,7 +9,6 @@ Devise.setup do |config|
   config.confirm_within = 1.days
   config.scoped_views = true
   config.sign_out_via = :delete
-  ## ここまでが ユーザー登録認証機能
 
   config.case_insensitive_keys = [:email]
   config.strip_whitespace_keys = [:email]
