@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[google_oauth2 twitter facebook]
 
   has_many :sns_credentials, dependent: :destroy
+  has_many :rules, dependent: :destroy
 
   def skip_confirmation!
     self.confirmed_at = Time.now
