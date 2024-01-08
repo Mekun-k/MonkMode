@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @user.save
       flash[:notice] = "ユーザー認証メールを送信いたしました。認証が完了しましたらログインをお願いいたします。"
       redirect_to new_user_session_path
-      Rule.rule_setteig(@user)
+      Rule.rule_setting(@user)
     else
       flash[:alert] = "ユーザー登録に失敗しました。"
       render action: :new and return
