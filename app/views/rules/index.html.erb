@@ -1,23 +1,18 @@
 <%= form_tag (rules_update_path) do %>
-  <% n = 1 %>
 
-  <% @rules.each do |rule| %>
+  <% @rules.each_with_index do |rule, i| %>
 
     <% if rule.rule_title == "" && rule.rule_type_id == true %>
-      <%= "No#{n}: " %><%= text_field_tag "content[#{rule.id}]", rule.rule_content, placeholder: "自由に設定可能"  %><br>
+      <%= "No#{i+1}: " %><%= text_field_tag "rule[content][#{rule.id}]", rule.rule_content, maxlength: 50, placeholder: "自由に設定可能"  %><br>
     <% elsif rule.rule_type_id == true %>
-      <%= "No#{n}: " %><%= number_field_tag "content[#{rule.id}]", rule.rule_content  %>
+      <%= "No#{i+1}: " %><%= text_field_tag "rule[content][#{rule.id}]", rule.rule_content, maxlength: 3, placeholder: "半角数字のみ入力可", pattern: "^[1-9][0-9]*" %>
       <%= rule.rule_title %><br>
     <% else %>
-      <%= "No#{n}: " %><%= rule.rule_title %><br>
+      <%= "No#{i+1}: " %><%= rule.rule_title %><br>
     <% end %>
-
-    <% n = n + 1 %>
 
   <% end %>
 
   <%= submit_tag "更新" %>
+
 <% end %>
-
-
-

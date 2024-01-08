@@ -1,23 +1,39 @@
 class RulesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     @rules = current_user.rules ||= ""
   end
 
   def update
 
-    @rules = params[:content]
+    @rules = rule_params
 
-    @rules.each do |key, value|
+    is_error = false
+
+    @rules['content'].each do |key, value|
       @rule = Rule.find(key)
       @rule.rule_content = value
-      unless @rule.save
-        flash[:notice] = "ルール設定の更新に失敗しました"
-        render rules_path
+      if @rule.save
+      else
+        is_error = true
       end
     end
 
-    flash[:notice] = "ルール設定の更新に成功しました"
+    if is_error == true
+      flash[:notice] = "ルール設定の更新に失敗しました"
+      @rules = current_user.rules ||= ""
+      render action: :index and return
+    end
+
+    flash[:notice] = "ルール設定を更新しました"
     redirect_to rules_path
+  end
+
+  private
+
+  def rule_params
+    params.require(:rule).permit(content: {})
   end
 
 end
