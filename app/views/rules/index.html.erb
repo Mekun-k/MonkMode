@@ -1,0 +1,23 @@
+<%= form_tag (rules_update_path) do %>
+  <% n = 1 %>
+
+  <% @rules.each do |rule| %>
+
+    <% if rule.rule_title == "" && rule.rule_type_id == true %>
+      <%= "No#{n}: " %><%= text_field_tag "content[#{rule.id}]", rule.rule_content, placeholder: "自由に設定可能"  %><br>
+    <% elsif rule.rule_type_id == true %>
+      <%= "No#{n}: " %><%= number_field_tag "content[#{rule.id}]", rule.rule_content  %>
+      <%= rule.rule_title %><br>
+    <% else %>
+      <%= "No#{n}: " %><%= rule.rule_title %><br>
+    <% end %>
+
+    <% n = n + 1 %>
+
+  <% end %>
+
+  <%= submit_tag "更新" %>
+<% end %>
+
+
+
