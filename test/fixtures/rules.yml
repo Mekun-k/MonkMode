@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rule_type_id: false
+  rule_title: MyString
+  rule_content: MyString
+  user: one
+
+two:
+  rule_type_id: false
+  rule_title: MyString
+  rule_content: MyString
+  user: two

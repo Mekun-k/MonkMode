@@ -6,10 +6,10 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable,
          :omniauthable, omniauth_providers: %i[google_oauth2 twitter facebook]
 
-  GUEST_USER_EMAIL = 'guest@example.com'.freeze
+  has_many :sns_credentials, dependent: :destroy
+  has_many :rules, dependent: :destroy
 
-  #パスワードなしでユーザー編集するためのメソッド
-  has_many :sns_credential, dependent: :destroy
+  GUEST_USER_EMAIL = 'guest@example.com'.freeze
 
   def skip_confirmation!
     self.confirmed_at = Time.now
