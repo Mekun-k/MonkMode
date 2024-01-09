@@ -14,13 +14,12 @@ class RulesController < ApplicationController
     @rules['content'].each do |key, value|
       @rule = Rule.find(key)
       @rule.rule_content = value
-      if @rule.save
-      else
+      if !(@rule.save)
         is_error = true
       end
     end
 
-    if is_error == true
+    if is_error
       flash[:notice] = "ルール設定の更新に失敗しました"
       @rules = current_user.rules ||= ""
       render action: :index and return
