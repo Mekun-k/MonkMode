@@ -1,0 +1,47 @@
+<%= form_tag(answers_create_path, method: :post) do %>
+
+  <% @rules.each_with_index do |rule, i| %>
+
+    <% if rule.rule_title == "" && rule.rule_type_id == true %>
+      <h3>
+        <%= "No#{i+1}: #{rule.rule_content}"%><br>
+      </h3>
+      <label>
+          <%= radio_button_tag "answer[value][#{rule.id}]", true %> 達成
+      </label>
+      <label>
+          <%= radio_button_tag "answer[value][#{rule.id}]", false %> 未達
+      </label><br>
+
+
+    <% elsif rule.rule_type_id == true %>
+      <h3>
+        <%= "No#{i+1}: #{rule.rule_content + rule.rule_title}"%><br>
+      </h3>
+      <label>
+          <%= radio_button_tag "answer[value][#{rule.id}]", true %> 達成
+      </label>
+      <label>
+          <%= radio_button_tag "answer[value][#{rule.id}]", false %> 未達
+      </label><br>
+
+
+    <% else %>
+      <h3>
+          <%= "No#{i+1}: #{rule.rule_title}"%><br>
+      </h3>
+      <label>
+          <%= radio_button_tag "answer[value][#{rule.id}]", true %> 達成
+      </label>
+      <label>
+          <%= radio_button_tag "answer[value][#{rule.id}]", false %> 未達
+      </label><br>
+
+
+    <% end %>
+
+  <% end %>
+
+  <%= submit_tag '診断する'  %>
+
+<% end %>

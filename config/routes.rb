@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
 
+  get 'answers/index'
+  get 'answers/new'
+  get 'answers/show'
+  post 'answers/create', to: 'answers#create'
+
+  resources :child_answers
+
   get '/rules', to: 'rules#index'
   post 'rules/update', to: 'rules#update'
 

@@ -16,6 +16,7 @@
         <% if user_signed_in? %>
           <%= link_to 'トップページ', root_path %>
           <%= link_to '振り返り設定', rules_path %>
+          <%= link_to '振り返り実施', answers_new_path %>
           <%= link_to 'プロフィール変更', edit_user_registration_path %>
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
         <% else %>
