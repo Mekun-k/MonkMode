@@ -9,7 +9,6 @@ class AnswersController < ApplicationController
     @answer.user_id = current_user.id
 
     @rules = current_user.rules
-    @rule = Rule.find(current_user.id)
   end
 
   def create

@@ -11,7 +11,7 @@ class Answer < ApplicationRecord
       success_result = content.count(true) * 1
       failure_result = content.count(false) * -1
       answer.score = success_result + failure_result
-      answer.save!
+      answer.save
     else
       is_error = true
     end
