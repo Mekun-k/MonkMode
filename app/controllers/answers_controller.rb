@@ -29,6 +29,8 @@ class AnswersController < ApplicationController
           end
         end
 
+        Answer.score_create(@answer)
+
         if is_error
           flash[:notice] = "振り返り実行に失敗しました"
           @rules = current_user.rules ||= ""
