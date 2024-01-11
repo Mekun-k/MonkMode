@@ -37,7 +37,7 @@ class AnswersController < ApplicationController
         end
 
         flash[:notice] = "振り返りを実施しました"
-        redirect_to answers_index_path
+        redirect_to answers_path
       end
 
     else
