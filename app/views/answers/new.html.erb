@@ -7,10 +7,10 @@
         <%= "No#{i+1}: #{rule.rule_content}"%><br>
       </h3>
       <label>
-          <%= radio_button_tag "answer[value][#{rule.id}]", true %> 達成
+          <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
       </label>
       <label>
-          <%= radio_button_tag "answer[value][#{rule.id}]", false %> 未達
+          <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
       </label><br>
 
 
@@ -19,10 +19,10 @@
         <%= "No#{i+1}: #{rule.rule_content + rule.rule_title}"%><br>
       </h3>
       <label>
-          <%= radio_button_tag "answer[value][#{rule.id}]", true %> 達成
+          <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
       </label>
       <label>
-          <%= radio_button_tag "answer[value][#{rule.id}]", false %> 未達
+          <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
       </label><br>
 
 
@@ -31,10 +31,10 @@
           <%= "No#{i+1}: #{rule.rule_title}"%><br>
       </h3>
       <label>
-          <%= radio_button_tag "answer[value][#{rule.id}]", true %> 達成
+          <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
       </label>
       <label>
-          <%= radio_button_tag "answer[value][#{rule.id}]", false %> 未達
+          <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
       </label><br>
 
 
