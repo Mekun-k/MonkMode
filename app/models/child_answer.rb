@@ -8,7 +8,7 @@ class ChildAnswer < ApplicationRecord
       user_id: user.id,
       answer_id: answer.id,
       rule_id: rule_id,
-      contnet: value
+      content: value
     )
   end
 end

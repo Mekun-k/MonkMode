@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2024_01_09_214850) do
     t.bigint "user_id", null: false
     t.bigint "rule_id", null: false
     t.bigint "answer_id", null: false
-    t.boolean "contnet", default: false, null: false
+    t.boolean "content", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["answer_id"], name: "index_child_answers_on_answer_id"
