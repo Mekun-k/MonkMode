@@ -17,4 +17,10 @@ class Answer < ApplicationRecord
     end
 
   end
+
+  def self.success_result(answer)
+    child_answers = answer.child_answers
+    content = child_answers.map { |child_answers| child_answers.content }
+    result = content.count(true) * 1
+  end
 end

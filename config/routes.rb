@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :answers
+  resources :answers, only: %i[index new show create]
 
   get '/rules', to: 'rules#index'
   post 'rules/update', to: 'rules#update'
-
-
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',

@@ -11,6 +11,12 @@ class AnswersController < ApplicationController
     @rules = current_user.rules
   end
 
+  def show
+    @answer = Answer.find_by(id: params[:id], user_id: current_user.id)
+    @child_answers = @answer.child_answers
+    @success_result = Answer.success_result(@answer)
+  end
+
   def create
 
     @rules = current_user.rules
@@ -28,16 +34,16 @@ class AnswersController < ApplicationController
           end
         end
 
-        Answer.score_create(@answer)
-
-        if is_error
+         if is_error
           flash[:notice] = "振り返り実行に失敗しました"
           @rules = current_user.rules ||= ""
           render action: :new and return
-        end
+         else
+          Answer.score_create(@answer)
+         end
 
         flash[:notice] = "振り返りを実施しました"
-        redirect_to answers_path
+        redirect_to answer_path(@answer)
       end
 
     else
@@ -50,9 +56,6 @@ class AnswersController < ApplicationController
       render action: :new and return
     end
 
-  end
-
-  def show
   end
 
   private
