@@ -2,7 +2,7 @@
 
   <% @rules.each_with_index do |rule, i| %>
 
-    <% if rule.rule_title == "" && rule.rule_type_id == true %>
+    <% if rule.rule_title == "" && rule.rule_type_id %>
       <h3>
         <%= "No#{i+1}: #{rule.rule_content}"%><br>
       </h3>
