@@ -30,7 +30,7 @@ class AnswersController < ApplicationController
 
   days.each do |d|
     if d.strftime("%Y年 %m月 %d日") == today
-      flash[:notice] = "振り返りは一日一回までです！"
+      flash.now[:notice] = "振り返りは一日一回までです！"
       @rules = current_user.rules ||= ""
       render action: :new and return
     end
@@ -53,7 +53,7 @@ class AnswersController < ApplicationController
         end
 
          if is_error
-          flash[:notice] = "振り返り実行に失敗しました"
+          flash.now[:notice] = "振り返り実行に失敗しました"
           @rules = current_user.rules ||= ""
           render action: :new and return
          else
@@ -69,7 +69,7 @@ class AnswersController < ApplicationController
     end
 
     if is_error
-      flash[:notice] = "振り返り実行に失敗しました"
+      flash.now[:notice] = "振り返り実行に失敗しました"
       @rules = current_user.rules ||= ""
       render action: :new and return
     end
