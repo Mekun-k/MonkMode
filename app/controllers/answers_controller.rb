@@ -2,6 +2,11 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @answers = current_user.answers
+  end
+
+  def board
+    @answers = Answer.all.includes(:user)
   end
 
   def new
@@ -12,7 +17,7 @@ class AnswersController < ApplicationController
   end
 
   def show
-    @answer = Answer.find_by(id: params[:id], user_id: current_user.id)
+    @answer = Answer.find_by(id: params[:id])
     @child_answers = @answer.child_answers
     @success_result = Answer.success_result(@answer)
   end

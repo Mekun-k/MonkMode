@@ -5,7 +5,7 @@ class Answer < ApplicationRecord
   def self.score_create(answer)
 
     child_answers = answer.child_answers
-    content = child_answers.map { |child_answers| child_answers.content }
+    content = child_answers.pluck(:content)
 
     if content.count == 15
       success_result = content.count(true) * 1
@@ -20,7 +20,7 @@ class Answer < ApplicationRecord
 
   def self.success_result(answer)
     child_answers = answer.child_answers
-    content = child_answers.map { |child_answers| child_answers.content }
+    content = child_answers.pluck(:content)
     result = content.count(true) * 1
   end
 end

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :answers, only: %i[index new show create]
+  resources :answers, only: %i[index new show create] do
+    collection do
+      get 'board'
+    end
+  end
 
   get '/rules', to: 'rules#index'
   post 'rules/update', to: 'rules#update'
@@ -18,4 +22,11 @@ Rails.application.routes.draw do
 
   root 'pages#index'
   get 'pages/show'
+
+
+  resources :pages, only: %i[index  show ] do
+    collection do
+      get 'answer'
+    end
+  end
 end
