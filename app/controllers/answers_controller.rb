@@ -24,9 +24,22 @@ class AnswersController < ApplicationController
 
   def create
 
+  today = Time.zone.today.strftime("%Y年 %m月 %d日")
+
+  days = current_user.answers.pluck(:created_at)
+
+  days.each do |d|
+    if d.strftime("%Y年 %m月 %d日") == today
+      flash[:notice] = "振り返りは一日一回までです！"
+      @rules = current_user.rules ||= ""
+      render action: :new and return
+    end
+  end
+
     @rules = current_user.rules
     @child_answers = answer_params
     @answer = Answer.new(user_id: current_user.id)
+
     is_error = false
 
     if @child_answers['value'].to_hash.size == 15
