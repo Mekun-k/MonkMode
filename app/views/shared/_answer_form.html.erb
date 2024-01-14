@@ -1,4 +1,9 @@
 <% answers.each do |answer| %>
+  <% if answer.user.avatar.attached? %>
+    <p>
+      <%= image_tag answer.user.avatar %>
+    </p>
+  <% end %>
   <%= link_to "日付: #{answer.created_at.strftime('%Y/%m/%d') }", answer_path(answer) %><br>
   <%= link_to "作成者: #{answer.user.name}", profile_path(answer.user) %><br>
   <%= link_to "スコア: #{answer.score}点", answer_path(answer) %><br>
