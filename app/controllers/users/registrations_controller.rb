@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       redirect_to new_user_session_path
       Rule.rule_setting(@user)
     else
-      flash[:alert] = "ユーザー登録に失敗しました。"
+      flash.now[:alert] = "ユーザー登録に失敗しました。"
       render action: :new and return
     end
   end

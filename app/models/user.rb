@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_many :sns_credentials, dependent: :destroy
   has_many :rules, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :child_answers, dependent: :destroy
 
   GUEST_USER_EMAIL = 'guest@example.com'.freeze
 

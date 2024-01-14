@@ -1,0 +1,12 @@
+.box-wrap .box {
+  display: none;
+  position: absolute;
+}
+
+.btn-wrap.is-inactive {
+  display: none;
+}
+
+.box-wrap.is-inactive .box{
+  position: relative;
+}
