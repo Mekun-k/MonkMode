@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/rules', to: 'rules#index'
   post 'rules/update', to: 'rules#update'
 
-
+  resources :profiles, only: %i[show]
 
   devise_for :users, controllers: {
     registrations: 'users/registrations',
