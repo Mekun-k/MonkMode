@@ -20,7 +20,7 @@ class RulesController < ApplicationController
     end
 
     if is_error
-      flash[:notice] = "ルール設定の更新に失敗しました"
+      flash.now[:notice] = "ルール設定の更新に失敗しました"
       @rules = current_user.rules ||= ""
       render action: :index and return
     end

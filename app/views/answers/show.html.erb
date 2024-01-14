@@ -1,0 +1,20 @@
+<h1>詳細ページ</h1>
+
+<%= render partial: '/shared/answer_link' %>
+
+<%= "日付: #{@answer.created_at.strftime('%Y/%m/%d') }" %><br>
+<%= "作成者: #{@answer.user.name}" %><br>
+<%= "スコア: #{@answer.score}点" %><br>
+<%= "達成率: #{Answer.success_result(@answer)}/15" %><br>
+<br>
+
+<%= "回答一覧" %> <br>
+<% @child_answers.each_with_index do |child_answers, i| %>
+  <% if child_answers.rule.rule_title == "" && child_answers.rule.rule_type_id == true %>
+    <%= "No#{i+1}: " %><%= child_answers.rule.rule_content %>  <%= child_answers.content ? '達成' : '未達成' %><br>
+  <% elsif child_answers.rule.rule_type_id == true %>
+    <%= "No#{i+1}: " %><%= child_answers.rule.rule_content + child_answers.rule.rule_title%>  <%= child_answers.content ? '達成' : '未達成' %><br>
+  <% else %>
+    <%= "No#{i+1}: " %><%= child_answers.rule.rule_title %>  <%= child_answers.content ? '達成' : '未達成' %><br>
+  <% end %>
+<% end %>
