@@ -1,5 +1,6 @@
 class Rule < ApplicationRecord
   belongs_to :user
+  has_many :child_answers, dependent: :destroy
   validates :rule_content, presence: true
 
   RULE_TITLES = [
