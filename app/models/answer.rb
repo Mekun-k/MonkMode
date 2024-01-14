@@ -4,9 +4,9 @@ class Answer < ApplicationRecord
 
   NUMBERSET = 1
 
-  MIN_NMBER = 1
-  SET_NMBER = 2
-  MAX_NMBER = 16
+  MIN_NUMBER = 1
+  SET_NUMBER = 2
+  MAX_NUMBER = 16
 
   def self.score_create(answer)
     child_answers = answer.child_answers

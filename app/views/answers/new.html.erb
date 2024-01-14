@@ -9,15 +9,15 @@
   <div class="diagnose-wrap">
     <div class="inner-block">
       <div class="btn-wrap">
-        <%= button_tag "振り返り実施", class: "tool-btn start-btn", type: "button",  data: {box_link: "q#{Answer::MIN_NMBER}"} %>
+        <%= button_tag "振り返り実施", class: "tool-btn start-btn", type: "button",  data: {box_link: "q#{Answer::MIN_NUMBER}"} %>
       </div>
       <div class="box-wrap">
         <%= form_tag(answers_path, method: :post) do %>
           <% @rules.each_with_index do |rule, i| %>
             <% if rule.rule_title == "" && rule.rule_type_id %>
-              <div id= "q<%= i+Answer::MIN_NMBER %>" class="box">
+              <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box">
                 <h3>
-                  <%= "No#{i+Answer::MIN_NMBER}: #{rule.rule_content}"%><br>
+                  <%= "No#{i+Answer::MIN_NUMBER}: #{rule.rule_content}"%><br>
                 </h3>
                 <div class="select-wrap">
                   <label>
@@ -28,13 +28,13 @@
                   </label><br>
                 </div>
                 <div class="btn-wrap">
-                  <%= button_tag "次の質問へ", class: "tool-btn next is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NMBER}"} %>
+                  <%= button_tag "次の質問へ", class: "tool-btn next is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
                 </div>
               </div>
-            <% elsif rule.rule_type_id == true %>
-              <div id= "q<%= i+Answer::MIN_NMBER %>" class="box">
+            <% elsif rule.rule_type_id %>
+              <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box">
                 <h3>
-                  <%= "No#{i+Answer::MIN_NMBER}: #{rule.rule_content + rule.rule_title}"%><br>
+                  <%= "No#{i+Answer::MIN_NUMBER}: #{rule.rule_content + rule.rule_title}"%><br>
                 </h3>
                 <div class="select-wrap">
                   <label>
@@ -45,13 +45,13 @@
                   </label><br>
                 </div>
                 <div class="btn-wrap">
-                  <%= button_tag "次の質問へ", class: "tool-btn next is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NMBER}"} %>
+                  <%= button_tag "次の質問へ", class: "tool-btn next is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
                 </div>
               </div>
-              <% elsif i == @rules.size-Answer::MIN_NMBER %>
-                <div id= "q<%= i+Answer::MIN_NMBER %>" class="box">
+              <% elsif i == @rules.size-Answer::MIN_NUMBER %>
+                <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box">
                   <h3>
-                    <%= "No#{i+Answer::MIN_NMBER}: #{rule.rule_title}"%><br>
+                    <%= "No#{i+Answer::MIN_NUMBER}: #{rule.rule_title}"%><br>
                   </h3>
 
                   <div class="select-wrap">
@@ -64,13 +64,13 @@
                   </div>
 
                   <div class="btn-wrap">
-                    <%= button_tag "終了する", class: "tool-btn next result is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NMBER}"} %>
+                    <%= button_tag "終了する", class: "tool-btn next result is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
                   </div>
                 </div>
             <% else %>
-              <div id= "q<%= i+Answer::MIN_NMBER %>" class="box">
+              <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box">
                 <h3>
-                  <%= "No#{i+Answer::MIN_NMBER}: #{rule.rule_title}"%><br>
+                  <%= "No#{i+Answer::MIN_NUMBER}: #{rule.rule_title}"%><br>
                 </h3>
                 <div class="select-wrap">
                   <label>
@@ -81,14 +81,14 @@
                   </label><br>
                 </div>
                 <div class="btn-wrap">
-                  <%= button_tag "次の質問へ", class: "tool-btn next is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NMBER}"} %>
+                  <%= button_tag "次の質問へ", class: "tool-btn next is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
                 </div>
               </div>
             <% end %>
           <% end %>
-          <div id= "q<%= Answer::MAX_NMBER %>" class="box">
+          <div id= "q<%= Answer::MAX_NUMBER %>" class="box">
             <div class="btn-wrap">
-              <%= submit_tag '回答を保存する', class: "tool-btn next is-active", data: {box_link: "q#{Answer::MAX_NMBER}"}  %>
+              <%= submit_tag '回答を保存する', class: "tool-btn next is-active", data: {box_link: "q#{Answer::MAX_NUMBER}"}  %>
             </div>
           </div>
         <% end %>
