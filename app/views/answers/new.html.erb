@@ -48,6 +48,25 @@
                   <%= button_tag "次の質問へ", class: "tool-btn next is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NMBER}"} %>
                 </div>
               </div>
+              <% elsif i == @rules.size-Answer::MIN_NMBER %>
+                <div id= "q<%= i+Answer::MIN_NMBER %>" class="box">
+                  <h3>
+                    <%= "No#{i+Answer::MIN_NMBER}: #{rule.rule_title}"%><br>
+                  </h3>
+
+                  <div class="select-wrap">
+                    <label>
+                        <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
+                    </label>
+                    <label>
+                        <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
+                    </label><br>
+                  </div>
+
+                  <div class="btn-wrap">
+                    <%= button_tag "終了する", class: "tool-btn next result is-active", type: "button",  data: {box_link: "q#{i+Answer::SET_NMBER}"} %>
+                  </div>
+                </div>
             <% else %>
               <div id= "q<%= i+Answer::MIN_NMBER %>" class="box">
                 <h3>
