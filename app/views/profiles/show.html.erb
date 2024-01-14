@@ -1,1 +1,7 @@
+<h1>プロフィールページ</h1>
+
 <%= render partial: '/relationships/follow_list', locals: { user: @user } %>
+<br>
+
+<h2>振り返り一覧</h2>
+<%= render partial: '/shared/answer_form', locals: { answers: @user.answers } %>
