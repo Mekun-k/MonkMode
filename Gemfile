@@ -68,3 +68,5 @@ gem "omniauth-facebook" ## Facebook認証
 gem "omniauth-rails_csrf_protection" ## どの認証でも必要
 
 gem 'image_processing', '~> 1.2'
+
+gem 'aws-sdk-s3'
