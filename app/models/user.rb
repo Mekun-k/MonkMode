@@ -19,6 +19,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
 
+  validates :self_introduction, length: { maximum: 140 }
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end

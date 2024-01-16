@@ -4,7 +4,9 @@
       <%= link_to image_tag(answer.user.avatar.variant(resize: "100x100")), "#{profile_path(answer.user)}" %>
     </p>
   <% else %>
+    <p>
       <%= link_to image_tag("default_user.png", :size => "100x100"), "#{profile_path(answer.user)}" %>
+    </p>
   <% end %>
   <%= link_to "作成者: #{answer.user.name}", profile_path(answer.user) %><br>
   <%= link_to "日付: #{answer.created_at.strftime('%Y/%m/%d') }", answer_path(answer) %><br>

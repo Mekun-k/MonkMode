@@ -14,6 +14,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :self_introduction %><br />
+    <%= f.text_field :self_introduction, autofocus: true %>
+  </div>
+
+  <div class="field">
     <%= f.label :avatar %><br />
     <% if current_user.avatar.attached? %>
       <p>
