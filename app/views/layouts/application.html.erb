@@ -18,6 +18,7 @@
           <%= link_to '振り返り', answer_pages_path %>
           <%= link_to '掲示板', board_answers_path %>
           <%= link_to 'プロフィール変更', edit_user_registration_path %>
+          <%= link_to 'プロフィール', profile_path(current_user) %><br>
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
         <% else %>
           <%= link_to 'サインアップ', new_user_registration_path %>
