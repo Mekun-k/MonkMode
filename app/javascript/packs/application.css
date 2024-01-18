@@ -10,3 +10,6 @@
 .box-wrap.is-inactive .box{
   position: relative;
 }
+a {
+  text-decoration: none;
+}
