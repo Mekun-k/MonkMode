@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :answers, only: %i[index new show create] do
+    resources :comments, only: [:create, :destroy, :update], shallow: true
     resource :favorites, only: [:create, :destroy]
     collection do
       get 'board'

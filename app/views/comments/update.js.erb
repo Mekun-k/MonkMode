@@ -1,0 +1,23 @@
+$('#js-comment-<%= @comment.id %>').html('<%=j render "comments/js_comment", comment: @comment %>');
+
+// 編集キャンセルボタンがクリックされた時の処理
+$($('#js-comment-<%= @comment.id %>').find('.comment-cancel-button')[0]).on('click', (e) => {
+    // コメントのラベルを再表示
+    $('#js-comment-label-<%= @comment.id %>').show();
+    // コメントの編集用テキストエリアを非表示
+    $('#js-textarea-comment-<%= @comment.id %>').hide();
+    // コメントの更新ボタンを非表示
+    $('#js-comment-button-<%= @comment.id %>').hide();
+    // エラーメッセージを非表示
+    $('#js-comment-post-error-<%= @comment.id %>').hide();
+})
+
+// コメントの更新時にエラーがある場合
+<% if @comment.errors.any? %>
+  // エラーメッセージ要素を取得
+  const commentError = $('#js-comment-post-error-<%= @comment.id %>');
+  // エラーメッセージを設定
+  commentError.text('<%= @comment.errors.full_messages.first %>');
+  // エラーメッセージを2秒でフェードアウト
+  commentError.fadeOut(2000);
+<% end %>

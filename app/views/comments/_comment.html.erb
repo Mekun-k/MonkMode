@@ -1,0 +1,41 @@
+<tr id="comment-<%= comment.id %>">
+  <td style="width: 60px">
+    <% if comment.user.avatar.attached? %>
+      <p>
+        <%=  image_tag(comment.user.avatar, class: 'profile-icon')  %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to image_tag("default_user.png", class: 'profile-icon'), "#{profile_path(comment.user)}" %>
+      </p>
+    <% end %>
+  </td>
+  <td>
+    <h3 class="small"><%= comment.user.name %></h3>
+    <div id="js-comment-<%= comment.id %>">
+      <%= render "comments/js_comment", comment: comment %>
+    </div>
+  </td>
+
+  <% if current_user.own?(comment) %>
+    <td class="action">
+      <ul class="list-inline justify-content-center" style="float: right;">
+        <li class="list-inline-item">
+          <span data-comment-id=<%= comment.id %> class="js-edit-comment-button">
+            <i class="fas fa-edit text-primary"></i>
+          </span>
+        </li>
+        <li class="list-inline-item">
+          <%= link_to comment_path(comment),
+                      method: :delete,
+                      remote: true do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
+        </li>
+        <li>
+
+        </li>
+      </ul>
+    </td>
+  <% end %>
+</tr>
