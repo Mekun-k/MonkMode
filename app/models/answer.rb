@@ -9,6 +9,13 @@ class Answer < ApplicationRecord
   SET_NUMBER = 2
   MAX_NUMBER = 16
 
+  def map(user)
+    answers = user.answers
+    answer_created_at = answers.pluck(:created_at)
+    answer_score = answers.pluck(:score)
+  end
+
+
   def favorited?(user)
     favorites.where(user_id: user.id).exists?
   end

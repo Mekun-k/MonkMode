@@ -1,0 +1,15 @@
+<div id="heatmap"></div>
+<script>
+  var cal = new CalHeatMap();
+  cal.init({
+      itemSelector: "#heatmap", //とりあえず設定しておけ
+      domain: "month", //月表示
+      subDomain: 'x_day', //日付部分の並び方を指定している
+      cellSize: 70, //日付部分のセルサイズ
+      subDomainTextFormat: '%d日',//カレンダーの日付部分のテキスト
+      domainLabelFormat: '%m月', //カレンダーの下に表示されるフォント
+      range: 1,//月の表示数
+      legend: [1,5,10,15], //閾値を設定可能、4つ目の数字がマックス値
+      data: {1705744570: 1}, //timestanpをintegerに直した値：閾値
+  });
+</script>

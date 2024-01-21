@@ -70,3 +70,5 @@ gem "omniauth-rails_csrf_protection" ## どの認証でも必要
 gem 'image_processing', '~> 1.2'
 
 gem 'aws-sdk-s3'
+
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
