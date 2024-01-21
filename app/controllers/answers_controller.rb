@@ -20,7 +20,7 @@ class AnswersController < ApplicationController
     @answer = Answer.find_by(id: params[:id])
     @child_answers = @answer.child_answers
     @success_result = Answer.success_result(@answer)
-    @answer.map(current_user)
+    @answer.user.map(current_user)
   end
 
   def create

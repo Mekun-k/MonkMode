@@ -22,6 +22,14 @@ class User < ApplicationRecord
 
   validates :self_introduction, length: { maximum: 140 }
 
+  def map(user)
+    answers = user.answers
+    answer_created = answers.pluck(:created_at)
+    answer_created_at = answer_created.map { |a| a.to_i }
+    answer_score = answers.pluck(:score)
+    heatmap_value = Hash[answer_created_at.zip(answer_score)]
+  end
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end

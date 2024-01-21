@@ -1,17 +1,19 @@
 <h1>プロフィールページ</h1>
 
-  <% if @user.avatar.attached? %>
-    <p>
-      <%= image_tag @user.avatar.variant(resize: "100x100") %>
-    </p>
-  <% else %>
-    <p>
-      <%= link_to image_tag("default_user.png", :size => "100x100"), "#{profile_path(@user)}" %>
-    </p>
-  <% end %>
+<% if @user.avatar.attached? %>
+  <p>
+    <%= image_tag @user.avatar.variant(resize: "100x100") %>
+  </p>
+<% else %>
+  <p>
+    <%= link_to image_tag("default_user.png", :size => "100x100"), "#{profile_path(@user)}" %>
+  </p>
+<% end %>
 
 <%= render partial: '/relationships/follow_list', locals: { user: @user } %>
+<%= render "shared/heatmap", user: @user %>
 <br>
 
 <h2>振り返り一覧</h2>
 <%= render partial: '/shared/answer_form', locals: { answers: @user.answers } %>
+

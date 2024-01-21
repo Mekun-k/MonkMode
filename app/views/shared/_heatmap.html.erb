@@ -1,15 +1,23 @@
 <div id="heatmap"></div>
 <script>
-  var cal = new CalHeatMap();
+document.addEventListener('turbolinks:load', function() {
+  const answer_date = <%= user.map(user).to_json.html_safe %>;
+  const cal = new CalHeatMap();
   cal.init({
-      itemSelector: "#heatmap", //とりあえず設定しておけ
-      domain: "month", //月表示
-      subDomain: 'x_day', //日付部分の並び方を指定している
-      cellSize: 70, //日付部分のセルサイズ
-      subDomainTextFormat: '%d日',//カレンダーの日付部分のテキスト
-      domainLabelFormat: '%m月', //カレンダーの下に表示されるフォント
-      range: 1,//月の表示数
-      legend: [1,5,10,15], //閾値を設定可能、4つ目の数字がマックス値
-      data: {1705744570: 1}, //timestanpをintegerに直した値：閾値
+    itemSelector: "#heatmap",
+    domain: "month",
+    subDomain: 'x_day',
+    cellSize: 40,
+    subDomainTextFormat: '%d日',
+    domainLabelFormat: '%m月',
+    range: 1,
+    legend: [-10,-4,2,8,14],
+    data: answer_date,
+    legendVerticalPosition: 'center',
+    legendHorizontalPosition: 'right',
+    legendOrientation: 'vertical',
+    legendCellSize: 25,
   });
+});
+
 </script>
