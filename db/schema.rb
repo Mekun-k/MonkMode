@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_16_113952) do
+ActiveRecord::Schema.define(version: 2024_01_18_110050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 2024_01_16_113952) do
     t.index ["answer_id"], name: "index_child_answers_on_answer_id"
     t.index ["rule_id"], name: "index_child_answers_on_rule_id"
     t.index ["user_id"], name: "index_child_answers_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.bigint "answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_comments_on_answer_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -136,6 +146,8 @@ ActiveRecord::Schema.define(version: 2024_01_16_113952) do
   add_foreign_key "child_answers", "answers"
   add_foreign_key "child_answers", "rules"
   add_foreign_key "child_answers", "users"
+  add_foreign_key "comments", "answers"
+  add_foreign_key "comments", "users"
   add_foreign_key "favorites", "answers"
   add_foreign_key "favorites", "users"
   add_foreign_key "rules", "users"

@@ -18,6 +18,9 @@ class AnswersController < ApplicationController
 
   def show
     @answer = Answer.find_by(id: params[:id])
+    @comment = Comment.new
+    @comments = @answer.comments.includes(:user).order(created_at: :desc)
+
     @child_answers = @answer.child_answers
     @success_result = Answer.success_result(@answer)
     @answer.user.map(current_user)

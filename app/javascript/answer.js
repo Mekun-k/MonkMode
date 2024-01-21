@@ -1,5 +1,5 @@
-$(document).ready(function() {
-  $('.tool-btn').on('click', function () {
+$(function() {
+  $(document).on('click', '.tool-btn', function () {
     let target = $(this).data('box-link');
     let box = $('#' + target);
     $(box).parent().addClass('is-inactive');

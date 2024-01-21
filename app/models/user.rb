@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :child_answers, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -28,6 +29,10 @@ class User < ApplicationRecord
     answer_created_at = answer_created.map { |a| a.to_i }
     answer_score = answers.pluck(:score)
     heatmap_value = Hash[answer_created_at.zip(answer_score)]
+  end
+
+  def own?(object)
+    object.user_id == id
   end
 
   def follow(user_id)
@@ -50,7 +55,6 @@ class User < ApplicationRecord
 
   private
 
-  # パスワードなしでユーザー編集するためのメソッド
   def update_without_current_password(params, *options)
     params.delete(:current_password)
 

@@ -1,7 +1,4 @@
 <h1>詳細ページ</h1>
-
-<%= render partial: '/shared/answer_link' %>
-
 <%= "日付: #{@answer.created_at.strftime('%Y/%m/%d') }" %><br>
 <%= "作成者: #{@answer.user.name}" %><br>
 <%= "スコア: #{@answer.score}点" %><br>
@@ -23,3 +20,7 @@
 <% end %>
 
 <%= render "shared/heatmap", user: @answer.user %>
+
+<%= render 'comments/form', { answer: @answer, comment: @comment } %>
+
+<%= render 'comments/comments', { comments: @comments } %>
