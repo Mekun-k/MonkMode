@@ -18,12 +18,12 @@
     <header>
       <nav>
         <% if user_signed_in? %>
-          <%= link_to 'トップページ', root_path %>
-          <%= link_to '振り返り', answer_pages_path %>
-          <%= link_to '掲示板', board_answers_path %>
-          <%= link_to 'プロフィール変更', edit_user_registration_path %>
-          <%= link_to 'プロフィール', profile_path(current_user) %><br>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          <%= link_to 'トップページ', root_path, data: {turbolinks: false} %>
+          <%= link_to '振り返り', answer_pages_path, data: {turbolinks: false} %>
+          <%= link_to '掲示板', board_answers_path, data: {turbolinks: false} %>
+          <%= link_to 'プロフィール変更', edit_user_registration_path, data: {turbolinks: false} %>
+          <%= link_to 'プロフィール', profile_path(current_user), data: {turbolinks: false} %><br>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: {turbolinks: false} %>
         <% else %>
           <%= link_to 'サインアップ', new_user_registration_path %>
           <%= link_to 'ログイン', new_user_session_path %>

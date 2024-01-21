@@ -1,20 +1,37 @@
 <% answers.each do |answer| %>
+  <%= link_to profile_path(answer.user), data: {turbolinks: false} do %>
+    <% if answer.user.avatar.attached? %>
+      <p>
+        <%= image_tag(answer.user.avatar, class: 'profile-icon') %>
+      </p>
+    <% else %>
+      <p>
+        <%= image_tag("default_user.png", class: 'profile-icon') %>
+      </p>
+    <% end %>
+
+    <%= "作成者: #{answer.user.name}" %><br>
+  <% end %>
+
   <%= link_to answer_path(answer), data: {turbolinks: false} do %>
     <%= "日付: #{answer.created_at.strftime('%Y/%m/%d') }" %><br>
-    <%= "作成者: #{answer.user.name}" %><br>
     <%= "スコア: #{answer.score}点" %><br>
     <%= "達成率: #{Answer.success_result(answer)}/15" %><br>
-    <div id="favorite_btn_<%= answer.id %>">
-      <%= render "favorites/btn", answer: answer %>
-    </div>
-    <div >
-      <% if answer.commented?(current_user) %>
-        <i class="fa-regular fa-comment"></i> <%= answer.comments.count %>
-      <% else %>
-        <i class="fa-regular fa-comment"></i>
-      <% end %>
-    </div>
-    <br>
-    <br>
   <% end %>
+
+  <div id="favorite_btn_<%= answer.id %>">
+    <%= render "favorites/btn", answer: answer %>
+  </div>
+
+  <div >
+    <% if answer.commented?(current_user) %>
+      <i class="fa-regular fa-comment"></i> <%= answer.comments.count %>
+    <% else %>
+      <i class="fa-regular fa-comment"></i>
+    <% end %>
+  </div>
+
+  <br>
+  <br>
+
 <% end %>
