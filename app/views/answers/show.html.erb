@@ -1,7 +1,4 @@
 <h1>詳細ページ</h1>
-
-<%= render partial: '/shared/answer_link' %>
-
 <%= "日付: #{@answer.created_at.strftime('%Y/%m/%d') }" %><br>
 <%= "作成者: #{@answer.user.name}" %><br>
 <%= "スコア: #{@answer.score}点" %><br>
@@ -21,3 +18,8 @@
     <%= "No#{i+1}: " %><%= child_answers.rule.rule_title %>  <%= child_answers.content ? '達成' : '未達成' %><br>
   <% end %>
 <% end %>
+<br>
+
+<%= render 'comments/form', { answer: @answer, comment: @comment } %>
+
+<%= render 'comments/comments', { comments: @comments } %>

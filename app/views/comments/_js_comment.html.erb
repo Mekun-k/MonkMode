@@ -1,0 +1,13 @@
+<p id="js-comment-label-<%= comment.id %>"><%= comment.body %></p>
+<p id="js-comment-post-error-<%= comment.id %>" class="text-danger"></p>
+
+<%= form_with model: comment, local: false do |f| %>
+  <%= f.text_area :body, id: "js-textarea-comment-edit-#{comment.id}",
+                            class: "form-control comment-post-error",
+                            style: "display:none;" %>
+
+  <div id="js-comment-button-<%= comment.id %>" style="display: none;">
+    <button data-cancel-id=<%= comment.id %> type="button" class="comment-button comment-cancel-button">キャンセル</button>
+    <%= f.submit "更新", class: "comment-button comment-update-button" %>
+  </div>
+<% end %>
