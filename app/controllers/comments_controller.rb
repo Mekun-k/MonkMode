@@ -9,7 +9,6 @@ class CommentsController < ApplicationController
 
   def update
     @comment.reload unless @comment.update(comment_update_params)
-
   end
 
   def destroy
