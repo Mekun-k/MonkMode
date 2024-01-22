@@ -8,18 +8,22 @@
 
     <%= stylesheet_pack_tag 'application' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cal-heatmap/3.6.2/cal-heatmap.min.js"></script>
+
   </head>
 
   <body>
     <header>
       <nav>
         <% if user_signed_in? %>
-          <%= link_to 'トップページ', root_path %>
-          <%= link_to '振り返り', answer_pages_path %>
-          <%= link_to '掲示板', board_answers_path %>
-          <%= link_to 'プロフィール変更', edit_user_registration_path %>
-          <%= link_to 'プロフィール', profile_path(current_user) %><br>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          <%= link_to 'トップページ', root_path, data: {turbolinks: false} %>
+          <%= link_to '振り返り', answer_pages_path, data: {turbolinks: false} %>
+          <%= link_to '掲示板', board_answers_path, data: {turbolinks: false} %>
+          <%= link_to 'プロフィール変更', edit_user_registration_path, data: {turbolinks: false} %>
+          <%= link_to 'プロフィール', profile_path(current_user), data: {turbolinks: false} %><br>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: {turbolinks: false} %>
         <% else %>
           <%= link_to 'サインアップ', new_user_registration_path %>
           <%= link_to 'ログイン', new_user_session_path %>

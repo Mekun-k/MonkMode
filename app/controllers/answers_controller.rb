@@ -23,6 +23,7 @@ class AnswersController < ApplicationController
 
     @child_answers = @answer.child_answers
     @success_result = Answer.success_result(@answer)
+    @answer.user.map(current_user)
   end
 
   def create

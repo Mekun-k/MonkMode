@@ -1,0 +1,22 @@
+<div id="heatmap"></div>
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    const answer_date = <%= user.map(user).to_json.html_safe %>;
+    const cal = new CalHeatMap();
+    cal.init({
+      itemSelector: "#heatmap",
+      domain: "month",
+      subDomain: 'x_day',
+      cellSize: 40,
+      subDomainTextFormat: '%d日',
+      domainLabelFormat: '%m月',
+      range: 1,
+      legend: [-10,-4,2,8,14],
+      data: answer_date,
+      legendVerticalPosition: 'center',
+      legendHorizontalPosition: 'right',
+      legendOrientation: 'vertical',
+      legendCellSize: 25,
+    });
+  });
+</script>
