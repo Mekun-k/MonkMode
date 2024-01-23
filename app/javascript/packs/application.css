@@ -172,3 +172,19 @@ Remove comment to apply this style to date with value equal to 0
     border-width: 6px 6px 0;
     border-top-color: #222;
 }
+
+.n-circle {
+  position: absolute;
+  padding-left: 1.3rem;
+  padding-top: 1rem;
+  color: #f91880;
+}
+
+.icon_mini {
+  width: 35px;
+  height: 35px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 2px;
+  border: 2px solid #333300;
+}

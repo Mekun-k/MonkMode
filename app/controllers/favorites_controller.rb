@@ -5,6 +5,7 @@ class FavoritesController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     @answer_favorite = Favorite.new(user_id: current_user.id, answer_id: params[:answer_id])
     @answer_favorite.save
+    @answer.create_notification_favorite!(current_user)
   end
 
   def destroy
