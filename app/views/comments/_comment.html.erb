@@ -28,7 +28,8 @@
         <li class="list-inline-item">
           <%= link_to comment_path(comment),
                       method: :delete,
-                      remote: true do %>
+                      remote: true,
+                      data: {turbolinks: false} do %>
             <i class="fa-solid fa-trash"></i>
           <% end %>
         </li>
