@@ -1,0 +1,48 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div class="col-md-5 ml-auto">
+  <div class="form-inline">
+    <span>
+      <%= link_to profile_path(visitor), data: {turbolinks: false} do %>
+        <% if visitor.avatar.attached? %>
+          <%= image_tag(visitor.avatar, class: "icon_mini") %>
+        <% else %>
+          <%= image_tag("default_user.png", class: "icon_mini") %>
+        <% end %>
+        <strong>
+          <%= visitor.name %>
+        </strong>
+      <% end %>
+      <%= 'さんが' %>
+
+      <% case notification.action %>
+      <% when 'follow' then %>
+        <%= "あなたをフォローしました" %>
+      <% when 'favorite' then %>
+        <%= link_to 'あなたの投稿', notification.answer, style: "font-weight: bold;", data: {turbolinks: false} %>
+        <%= "にいいねしました" %>
+      <% when 'comment' then %>
+        <% if notification.answer.user_id == visited.id %>
+          <%= link_to "あなたの投稿", notification.answer, style: "font-weight: bold;", data: {turbolinks: false} %>
+        <% else %>
+          <span>
+            <%= link_to answer_path(notification.answer), data: {turbolinks: false} do %>
+              <%= image_tag(notification.answer.user.avatar, class: "icon_mini") %>
+              <strong>
+                <%= notification.answer.user.name + 'さんの投稿' %>
+              </strong>
+            <% end %>
+          </span>
+        <% end %>
+        <%= "にコメントしました" %>
+        <p class="text-muted mb-0">
+          <%= Comment.find_by(id: notification.comment_id)&.body %>
+        </p>
+      <% end %>
+    </span>
+  </div>
+  <div class="small text-muted text-right">
+    <%= "#{time_ago_in_words(notification.created_at).upcase}前" %>
+  </div>
+  <hr>
+</div>
