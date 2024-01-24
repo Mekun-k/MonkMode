@@ -6,6 +6,15 @@
 <div id="favorite_btn_<%= @answer.id %>">
   <%= render "favorites/btn", answer: @answer %>
 </div>
+<div class ="title">
+  <%= link_to("https://twitter.com/intent/tweet?url=#{@twitter_share_url}%0a%0a&text=#{@encodedText}%0a&hashtags=#{@hashtags}%0a",
+                target: '_blank',
+                data: { toggle: "tooltip", placement: "bottom" },
+                title: "Xでシェア"
+              ) do %>
+    <i class="fa-brands fa-square-x-twitter fa-lg"></i>
+  <% end %>
+</div>
 <br>
 
 <%= "回答一覧" %> <br>

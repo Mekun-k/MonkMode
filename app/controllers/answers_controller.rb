@@ -24,6 +24,12 @@ class AnswersController < ApplicationController
     @child_answers = @answer.child_answers
     @success_result = Answer.success_result(@answer)
     @answer.user.map(current_user)
+
+    @twitter_share_url = answer_url(@answer)
+    twitter_share_text = "【今日の振り返り】\n\n・スコア: #{@answer.score}点\n・達成率: #{Answer.success_result(@answer)}/15\n\n詳細はこちら▼"
+    @encodedText = URI.encode_www_form_component(twitter_share_text)
+    twitter_share_tags = ["MonkMode", "モンクモード"]
+    @hashtags = URI.encode_www_form_component(twitter_share_tags.join(","))
   end
 
   def create

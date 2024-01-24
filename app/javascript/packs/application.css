@@ -172,3 +172,9 @@ Remove comment to apply this style to date with value equal to 0
     border-width: 6px 6px 0;
     border-top-color: #222;
 }
+
+.fa-square-x-twitter {
+	color: rgb(30, 48, 80);
+	font-family: unset;
+	font-weight: bold;
+}
