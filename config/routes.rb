@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
   resources :answers, only: %i[index new show create] do
-    resources :comments, only: [:create, :destroy, :update], shallow: true
-    resource :favorites, only: [:create, :destroy]
+    resources :comments, only: %i[create destroy update], shallow: true
+    resource :favorites, only: %i[create destroy]
     collection do
       get 'board'
     end
   end
+
+  resources :notifications, only: %i[index]
 
   get '/rules', to: 'rules#index'
   post 'rules/update', to: 'rules#update'
@@ -21,7 +23,7 @@ Rails.application.routes.draw do
   }
 
   resources :users do
-    resource :relationships, only: [:create, :destroy]
+    resource :relationships, only: %i[create destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
   end
