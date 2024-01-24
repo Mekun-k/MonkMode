@@ -3,8 +3,8 @@ class Relationship < ApplicationRecord
   belongs_to :followed, class_name: "User"
 
   def create_notification_follow!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, followed.id, 'follow'])
-    if temp.blank?
+    notification_follow = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, followed.id, 'follow'])
+    if notification_follow.blank?
       notification = current_user.active_notifications.new(
         visited_id: followed.id,
         action: 'follow'
