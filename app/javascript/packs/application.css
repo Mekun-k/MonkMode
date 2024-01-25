@@ -173,6 +173,11 @@ Remove comment to apply this style to date with value equal to 0
     border-top-color: #222;
 }
 
+.fa-square-x-twitter {
+	color: rgb(30, 48, 80);
+	font-family: unset;
+	font-weight: bold;
+}
 .n-circle {
   position: absolute;
   padding-left: 1.3rem;
