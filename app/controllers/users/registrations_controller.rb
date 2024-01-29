@@ -21,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def ensure_normal_user
     if resource.email == User::GUEST_USER_EMAIL
-      redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。'
+      redirect_to profile_path(current_user), alert: 'ゲストユーザーの更新・削除はできません。'
     end
   end
 
@@ -32,7 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def after_update_path_for(_resource)
-    root_path
+    profile_path(current_user)
   end
 
   def configure_account_update_params

@@ -1,0 +1,21 @@
+<div class="listings">
+  <div class="listings_channels">
+    <h3 class="listings_header mb-3">振り返り</h4>
+    <ul class="channel_list">
+      <div class="mb-3">
+        <%= sidebar_link_item('設定', rules_path, data: {turbolinks: false}) %>
+      </div>
+      <div class="mb-3">
+        <%= sidebar_link_item('実行', new_answer_path, data: {turbolinks: false}) %>
+      </div>
+      <div class="mb-3">
+        <% if params[:id].present? %>
+          <%= sidebar_link_item('詳細', answer_path(params[:id]), data: { turbolinks: false }) %>
+        <% end %>
+      </div>
+      <div class="mb-3">
+        <%= sidebar_link_item('結果一覧', answers_path, data: {turbolinks: false}) %>
+      </div>
+    </ul>
+  </div>
+</div>

@@ -10,11 +10,17 @@
 .box-wrap.is-inactive .box{
   position: relative;
 }
-a {
-  text-decoration: none;
-}
 
 .profile-icon {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 2px;
+  border: 2px solid #333300;
+}
+
+.header-icon {
   width: 90px;
   height: 90px;
   object-fit: cover;
@@ -34,8 +40,7 @@ a {
 
 .cal-heatmap-container .graph-label
 {
-	fill: #000;
-	font-size: 20px
+	font-size: 1rem;
 }
 
 .cal-heatmap-container .graph, .cal-heatmap-container .graph-legend rect {
@@ -54,8 +59,7 @@ a {
 }
 
 .cal-heatmap-container .subdomain-text {
-	font-size: 15px;
-	fill: #000;
+	font-size: 12px;
 	pointer-events: none
 }
 
@@ -192,4 +196,163 @@ Remove comment to apply this style to date with value equal to 0
   border-radius: 50%;
   padding: 2px;
   border: 2px solid #333300;
+}
+
+.navbar-nav .dropdown-toggle::after {
+  display: none;
+}
+
+.profile-icon-default {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  border-radius: 50%;
+  padding: 2px;
+  border: 2px solid #333300;
+}
+
+.font-sm {
+	font-size: 0.7rem;
+}
+
+.equal-width {
+  width: 100%; /* もしくは具体的な幅を指定 */
+  box-sizing: border-box; /* 幅にpaddingやborderも含める */
+}
+
+.equal-color {
+  text-decoration: none;
+  color: #212529;
+}
+
+.equal-color:hover {
+  color: rgba(0, 0, 0, 0.5) !important;
+  text-decoration: none !important;
+}
+
+.equal-heading-size {
+	font-size: 2rem;
+  color: #212529;
+}
+
+.channel-menu {
+  position: fixed;
+  top: 0;
+  @media screen and (max-width: 600px) {
+    position: inherit;
+    margin-left: 0;
+  }
+}
+
+.channel-menu_name {
+  display: inline-block;
+  padding: 0 0.5rem 0 1.5rem;
+  color: #555459;
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 53px;
+  cursor: pointer;
+  @media screen and (max-width: 600px) {
+    padding-left: 0;
+  }
+}
+.channel_name .prefix {
+  margin-right: 8px;
+}
+
+.channel-menu_prefix {
+  padding-right: 0.5rem;
+  font-weight: 500;
+}
+.channel-menu_date {
+  font-weight: bold;
+}
+.channel-menu h3 {
+  float: right;
+  padding-right: 0.1rem;
+  font-weight: 500;
+}
+.listings {
+  min-height: 100vh;
+  height: 100%;
+  width: 220px;
+  float: left;
+  color: #ab9ba9;
+  background-color: #1b2c36 !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 10;
+  @media screen and (max-width: 600px) {
+    display: none;
+    position: absolute;
+    &.show {
+      display: block;
+    }
+  }
+}
+
+.listings_channels {
+  margin: 1rem 0 2rem;
+}
+
+.listings_header {
+  text-align: left;
+  font-size: 1.2rem;
+  line-height: 1.25rem;
+  margin: 0 1rem 0.1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #ffffff;
+  width: 165px;
+  position: relative;
+}
+
+.channel_list {
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+  color: #ab9ba9;
+}
+
+.channel {
+  height: 24px;
+  line-height: 24px;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  padding-right: 17px;
+  color: #ffffff;
+  padding-left: 1rem;
+  a {
+    color: #ddd;
+    text-decoration: none;
+    width: 100%;
+    display: inline-block;
+  }
+  a:hover {
+    color: #eee;
+  }
+}
+
+.channel.active {
+  background: #5013B5;
+}
+
+.app-logo {
+	color: #5013B5;
+	font-family: "Playfair Display";
+	font-weight: bold;
+}
+
+.app-name {
+	color: #5013B5;
+	font-family: "Playfair Display";
+	font-weight: bold;
+}
+
+.text-q {
+  font-size: 1.5rem;
+}
+
+.custom-height {
+  height: 2em;
 }

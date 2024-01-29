@@ -14,22 +14,9 @@
 
   </head>
 
-  <body>
+  <body style="background-color: #2B546A;">
     <header>
-      <nav>
-        <% if user_signed_in? %>
-          <%= link_to 'トップページ', root_path, data: {turbolinks: false} %>
-          <%= link_to '振り返り', answer_pages_path, data: {turbolinks: false} %>
-          <%= link_to '掲示板', board_answers_path, data: {turbolinks: false} %>
-          <%= link_to 'プロフィール変更', edit_user_registration_path, data: {turbolinks: false} %>
-          <%= link_to 'プロフィール', profile_path(current_user), data: {turbolinks: false} %>
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, data: {turbolinks: false} %>
-          <%= render '/shared/circle' %>
-        <% else %>
-          <%= link_to 'サインアップ', new_user_registration_path %>
-          <%= link_to 'ログイン', new_user_session_path %>
-        <% end %>
-      </nav>
+      <%= render "shared/header" %>
     </header>
     <% if flash.notice %>
       <p class="notice"><%= notice %></p>
