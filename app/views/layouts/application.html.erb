@@ -18,13 +18,44 @@
     <header>
       <%= render "shared/header" %>
     </header>
-    <% if flash.notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if flash.alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
 
-    <%= yield %>
+  <div class="container-fluid">
+    <div class="row">
+      <% if user_signed_in? %>
+        <% if (controller_name == 'answers' && ['new', 'index', 'show'].include?(action_name)) || (controller_name == 'rules' && ['index'].include?(action_name)) %>
+          <div class="col-2 p-0">
+            <%= render 'shared/answer_sidebar' %>
+          </div>
+          <div class="col-8 p-0 offset-1 mt-3">
+            <%= render 'shared/flash_message' %>
+            <%= yield %>
+          </div>
+        <% elsif (controller_name == 'profiles' && ['show'].include?(action_name)) || (controller_name == 'registrations' && ['edit'].include?(action_name)) || (controller_name == 'notifications' && ['index'].include?(action_name)) %>
+          <div class="col-2 p-0">
+            <%= render'shared/profile_sidebar' %>
+          </div>
+          <div class="col-8 p-0 offset-1 mt-3">
+            <%= render 'shared/flash_message' %>
+            <%= yield %>
+          </div>
+        <% else %>
+          <div class="col-8 p-0 offset-2 mt-3">
+            <%= render 'shared/flash_message' %>
+            <%= yield %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="col-8 p-0 offset-2 mt-3">
+          <% if resource.errors.any? %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+          <% else %>
+            <%= render 'shared/flash_message' %>
+          <% end %>
+          <%= yield %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   </body>
 </html>

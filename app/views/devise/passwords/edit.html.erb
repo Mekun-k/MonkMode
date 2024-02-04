@@ -1,24 +1,25 @@
-<h2>Change your password</h2>
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
+<div class="bg-light p-3">
+  <h4 class="my-2">パスワード再設定</h4>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
+    <div class="field mb-3">
+      <%= f.label :password, "新しいパスワードを入力してください", class: "my-3" %><br />
+      <% if @minimum_password_length %>
+        <em>新パスワード(<%= @minimum_password_length %>文字以上)</em><br />
+      <% end %>
+      <%= f.password_field :password, class: "equal-width", autofocus: true, autocomplete: "新しいパスワード（6文字以上）" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field mb-5">
+      <%= f.label :password_confirmation, "パスワード確認用" %><br />
+      <%= f.password_field :password_confirmation, class: "equal-width", autocomplete: "new-password" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
+    <div class="actions my-3">
+      <%= f.submit "パスワードを更新する", class: "equal-width" %>
+    </div>
 
-<% end %>
+  <% end %>
+</div>
 
-<%= render "devise/shared/links" %>

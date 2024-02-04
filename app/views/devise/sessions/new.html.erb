@@ -1,37 +1,23 @@
-<div class="container">
-  <div class="row my-3">
-    <div class="col-6 text-left offset-3 bg-light">
-      <h4 class="my-3">ログイン</h4>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field mb-3">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, size: 50, autofocus: true, autocomplete: "email" %>
-          </div>
+<div class="bg-light p-3">
+  <h4 class="my-2">ログイン</h4>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field mb-3">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, class: "equal-width", autofocus: true, autocomplete: "email" %>
+      </div>
 
-          <div class="field">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, size: 50, autocomplete: "current-password" %>
-          </div>
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, class: "equal-width", autocomplete: "current-password" %>
+      </div>
 
-          <% if devise_mapping.rememberable? %>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div><br />
-          <% end %>
+      <div class="actions mt-3">
+        <%= f.submit "ログイン", class: "equal-width" %>
+      </div>
 
-          <div class="actions">
-            <%= f.submit "ログイン", class: "equal-width" %>
-          </div>
-
-        <% end %>
-        <br/>
-        <div class="equal-color">
-          <%= render "devise/shared/links" %>
-        </div>
+    <% end %>
+    <br/>
+    <div class="equal-color">
+      <%= render "devise/shared/links" %>
     </div>
-    </div>
-  </div>
 </div>
-
-

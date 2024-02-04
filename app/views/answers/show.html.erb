@@ -1,87 +1,76 @@
-<div class="row">
-  <div class="col-2">
-    <%= render 'shared/answer_sidebar' %>
-  </div>
-  <div class="col-8 offset-1 mt-3">
-    <div class="bg-light p-5">
-      <div class="border-bottom my-3">
-        <div class="d-flex flex-wrap mb-3">
-          <span class="mr-3"><%= @answer.created_at.strftime('%Y/%m/%d') %></span>
-          <span class="mr-3"><%= @answer.user.name %></span>
-          <span class="mr-3"><%= "スコア#{@answer.score}点" %></span>
-          <span class="mr-3"><%= "達成率#{Answer.success_result(@answer)}/15" %></span>
+<div class="bg-light p-3">
+  <div class="border-bottom my-3">
+    <div class="d-flex flex-wrap mb-3">
+      <span class="mr-3"><%= @answer.created_at.strftime('%Y/%m/%d') %></span>
+      <span class="mr-3"><%= @answer.user.name %></span>
+      <span class="mr-3"><%= "スコア#{@answer.score}点" %></span>
+      <span class="mr-3"><%= "達成率#{Answer.success_result(@answer)}/15" %></span>
 
-          <div id="favorite_btn_<%= @answer.id %>" class="mr-3">
-            <%= render "favorites/btn", answer: @answer %>
-          </div>
-
-          <div class="mr-3">
-            <% if @answer.commented?(@answer.user) %>
-              <i class="fa-regular fa-comment"></i> <%= @answer.comments.count %>
-            <% else %>
-              <i class="fa-regular fa-comment"></i>
-            <% end %>
-          </div>
-
-          <div class ="title mr-3">
-            <%= link_to("https://twitter.com/intent/tweet?url=#{@twitter_share_url}%0a%0a&text=#{@encodedText}%0a&hashtags=#{@hashtags}%0a",
-                          target: '_blank',
-                          data: { toggle: "tooltip", placement: "bottom" },
-                          title: "Xでシェア"
-                        ) do %>
-              <i class="fa-brands fa-square-x-twitter fa-lg"></i>
-            <% end %>
-          </div>
-        </div>
+      <div id="favorite_btn_<%= @answer.id %>" class="mr-3">
+        <%= render "favorites/btn", answer: @answer %>
       </div>
 
-      <div class="border-bottom my-3">
-        <div class="row mb-2">
-          <div class="col-10">
-            <h4 class="my-3">ルール一覧</h4>
-          </div>
-          <div class="col-2">
-            <h4 class="my-3 text-right">回答</h4>
-          </div>
-        </div>
-
-        <% @child_answers.each_with_index do |child_answers, i| %>
-          <% if child_answers.rule.rule_title == "" && child_answers.rule.rule_type_id == true %>
-            <div class="row mb-2">
-              <div class="col-11">
-                <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_content %>
-              </div>
-              <div class="col-1 text-center">
-                <%= child_answers.content ? '◯' : '×' %>
-              </div>
-            </div>
-          <% elsif child_answers.rule.rule_type_id == true %>
-            <div class="row mb-2">
-              <div class="col-11">
-                <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_content + child_answers.rule.rule_title%>
-              </div>
-              <div class="col-1 text-center">
-                <%= child_answers.content ? '◯' : '×' %>
-              </div>
-            </div>
-          <% else %>
-            <div class="row mb-2">
-              <div class="col-11">
-                <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_title %>
-              </div>
-              <div class="col-1 text-center">
-                <%= child_answers.content ? '◯' : '×' %>
-              </div>
-            </div>
-          <% end %>
+      <div class="mr-3">
+        <% if @answer.commented?(@answer.user) %>
+          <i class="fa-regular fa-comment"></i> <%= @answer.comments.count %>
+        <% else %>
+          <i class="fa-regular fa-comment"></i>
         <% end %>
       </div>
 
-      <%= render 'comments/form', { answer: @answer, comment: @comment } %>
-      <%= render 'comments/comments', { comments: @comments } %>
-
+      <div class ="title mr-3">
+        <%= link_to("https://twitter.com/intent/tweet?url=#{@twitter_share_url}%0a%0a&text=#{@encodedText}%0a&hashtags=#{@hashtags}%0a",
+                      target: '_blank',
+                      data: { toggle: "tooltip", placement: "bottom" },
+                      title: "Xでシェア"
+                    ) do %>
+          <i class="fa-brands fa-square-x-twitter fa-lg"></i>
+        <% end %>
+      </div>
     </div>
   </div>
+
+  <div class="border-bottom my-3">
+    <div class="row mb-2">
+      <div class="col-10">
+        <h4 class="my-3">ルール一覧</h4>
+      </div>
+      <div class="col-2">
+        <h4 class="my-3 text-right">回答</h4>
+      </div>
+    </div>
+
+    <% @child_answers.each_with_index do |child_answers, i| %>
+      <% if child_answers.rule.rule_title == "" && child_answers.rule.rule_type_id == true %>
+        <div class="row mb-2">
+          <div class="col-11">
+            <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_content %>
+          </div>
+          <div class="col-1 text-center">
+            <%= child_answers.content ? '◯' : '×' %>
+          </div>
+        </div>
+      <% elsif child_answers.rule.rule_type_id == true %>
+        <div class="row mb-2">
+          <div class="col-11">
+            <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_content + child_answers.rule.rule_title%>
+          </div>
+          <div class="col-1 text-center">
+            <%= child_answers.content ? '◯' : '×' %>
+          </div>
+        </div>
+      <% else %>
+        <div class="row mb-2">
+          <div class="col-11">
+            <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_title %>
+          </div>
+          <div class="col-1 text-center">
+            <%= child_answers.content ? '◯' : '×' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= render 'comments/form', { answer: @answer, comment: @comment } %>
+  <%= render 'comments/comments', { comments: @comments } %>
 </div>
-
-

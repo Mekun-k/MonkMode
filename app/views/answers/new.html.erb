@@ -1,101 +1,94 @@
-<div class="row">
-  <div class="col-2">
-    <%= render'shared/answer_sidebar' %>
-  </div>
-  <div class="col-8 offset-1 mt-3 ">
-    <div class="wrap mt-3">
-      <div class="diagnose-wrap">
-        <div class="inner-block">
-          <div class="btn-wrap">
-            <div class="bg-light p-5">
-              <p class="text display-4 app-name">MONK MOOD</p>
-              <p class="mb-0">ルールをどれだけ守れたか用意されている質問に答えることで、今日1日の自分の行動・選択を質問振り返ることができ、自分の行動を再認識することができます</p>
-            </div>
-            <%= button_tag "振り返り実施", class: "tool-btn start-btn mt-3 equal-width bg-light p-3", type: "button",  data: {box_link: "q#{Answer::MIN_NUMBER}"} %>
-          </div>
-          <div class="box-wrap offset-1 p-5">
-            <%= form_tag(answers_path, method: :post) do %>
-              <% @rules.each_with_index do |rule, i| %>
-                <% if rule.rule_title == "" && rule.rule_type_id %>
-                  <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box col-8 bg-light p-5">
-                    <h6 class="col-12 text-center mb-5">
-                      <span class="text-q"><%= "Q#{i+Answer::MIN_NUMBER}. "%></span><%= rule.rule_content %>
-                    </h6>
-                    <div class="select-wrap mt-3 text-center">
-                      <label class="mr-5">
-                          <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
-                      </label>
-                      <label class="ml-5">
-                          <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
-                      </label>
-                    </div>
-                    <div class="btn-wrap mt-3">
-                      <%= button_tag "次の質問へ", class: "tool-btn next is-active equal-width mt-3", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
-                    </div>
-                  </div>
-                <% elsif rule.rule_type_id %>
-                  <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box col-8 bg-light p-5">
-                    <h6 class="col-12 text-center mb-5">
-                      <span class="text-q"><%= "Q#{i+Answer::MIN_NUMBER}. "%></span><%= rule.rule_content + rule.rule_title %>
-                    </h6>
-                    <div class="select-wrap mt-3 text-center">
-                      <label class="mr-5">
-                        <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
-                      </label>
-                      <label class="ml-5">
-                        <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
-                      </label>
-                    </div>
-                    <div class="btn-wrap mt-3 text-center">
-                      <%= button_tag "次の質問へ", class: "tool-btn next is-active equal-width mt-3", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
-                    </div>
-                  </div>
-                  <% elsif i == @rules.size-Answer::MIN_NUMBER %>
-                    <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box col-8 bg-light p-5">
-                      <h6 class="col-12 text-center mb-5">
-                        <span class="text-q"><%= "Q#{i+Answer::MIN_NUMBER}. "%></span><%= rule.rule_title %>
-                      </h6>
-
-                      <div class="select-wrap mt-3 text-center">
-                        <label class="mr-5">
-                            <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
-                        </label>
-                        <label class="ml-5">
-                            <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
-                        </label>
-                      </div>
-
-                      <div class="btn-wrap mt-3 text-center">
-                        <%= button_tag "終了する", class: "tool-btn next result is-active equal-width mt-3", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
-                      </div>
-                    </div>
-                <% else %>
-                  <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box col-8 bg-light p-5">
-                    <h6 class="col-12 text-center mb-5">
-                      <span class="text-q"><%= "Q#{i+Answer::MIN_NUMBER}.  " %></span><%= rule.rule_title %>
-                    </h6>
-                    <div class="select-wrap mt-3 text-center">
-                      <label class="mr-5">
-                          <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
-                      </label>
-                      <label class="ml-5">
-                          <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
-                      </label>
-                    </div>
-                    <div class="btn-wrap mt-3 text-center">
-                      <%= button_tag "次の質問へ", class: "tool-btn next is-active equal-width mt-3", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
-                    </div>
-                  </div>
-                <% end %>
-              <% end %>
-              <div id= "q<%= Answer::MAX_NUMBER %>" class="box col-8">
+<div class="wrap">
+  <div class="diagnose-wrap">
+    <div class="inner-block">
+      <div class="btn-wrap">
+        <div class="bg-light p-5">
+          <p class="text display-4 app-name">MONK MOOD</p>
+          <p class="mb-0">ルールをどれだけ守れたか用意されている質問に答えることで、今日1日の自分の行動・選択を質問振り返ることができ、自分の行動を再認識することができます</p>
+        </div>
+        <%= button_tag "振り返り実施", class: "tool-btn start-btn mt-3 equal-width bg-light p-3", type: "button",  data: {box_link: "q#{Answer::MIN_NUMBER}"} %>
+      </div>
+      <div class="box-wrap offset-1 p-5">
+        <%= form_tag(answers_path, method: :post) do %>
+          <% @rules.each_with_index do |rule, i| %>
+            <% if rule.rule_title == "" && rule.rule_type_id %>
+              <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box col-8 bg-light p-5">
+                <h6 class="col-12 text-center mb-5">
+                  <span class="text-q"><%= "Q#{i+Answer::MIN_NUMBER}. "%></span><%= rule.rule_content %>
+                </h6>
+                <div class="select-wrap mt-3 text-center">
+                  <label class="mr-5">
+                      <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
+                  </label>
+                  <label class="ml-5">
+                      <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
+                  </label>
+                </div>
+                <div class="btn-wrap mt-3">
+                  <%= button_tag "次の質問へ", class: "tool-btn next is-active equal-width mt-3", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
+                </div>
+              </div>
+            <% elsif rule.rule_type_id %>
+              <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box col-8 bg-light p-5">
+                <h6 class="col-12 text-center mb-5">
+                  <span class="text-q"><%= "Q#{i+Answer::MIN_NUMBER}. "%></span><%= rule.rule_content + rule.rule_title %>
+                </h6>
+                <div class="select-wrap mt-3 text-center">
+                  <label class="mr-5">
+                    <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
+                  </label>
+                  <label class="ml-5">
+                    <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
+                  </label>
+                </div>
                 <div class="btn-wrap mt-3 text-center">
-                  <%= submit_tag '回答を保存する', class: "tool-btn next is-active equal-width mt-3 bg-light p-3", data: {box_link: "q#{Answer::MAX_NUMBER}"}  %>
+                  <%= button_tag "次の質問へ", class: "tool-btn next is-active equal-width mt-3", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
+                </div>
+              </div>
+              <% elsif i == @rules.size-Answer::MIN_NUMBER %>
+                <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box col-8 bg-light p-5">
+                  <h6 class="col-12 text-center mb-5">
+                    <span class="text-q"><%= "Q#{i+Answer::MIN_NUMBER}. "%></span><%= rule.rule_title %>
+                  </h6>
+
+                  <div class="select-wrap mt-3 text-center">
+                    <label class="mr-5">
+                        <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
+                    </label>
+                    <label class="ml-5">
+                        <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
+                    </label>
+                  </div>
+
+                  <div class="btn-wrap mt-3 text-center">
+                    <%= button_tag "終了する", class: "tool-btn next result is-active equal-width mt-3", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
+                  </div>
+                </div>
+            <% else %>
+              <div id= "q<%= i+Answer::MIN_NUMBER %>" class="box col-8 bg-light p-5">
+                <h6 class="col-12 text-center mb-5">
+                  <span class="text-q"><%= "Q#{i+Answer::MIN_NUMBER}.  " %></span><%= rule.rule_title %>
+                </h6>
+                <div class="select-wrap mt-3 text-center">
+                  <label class="mr-5">
+                      <%= radio_button_tag "answer[value][#{rule.id}]", true, :required %> 達成
+                  </label>
+                  <label class="ml-5">
+                      <%= radio_button_tag "answer[value][#{rule.id}]", false, :required %> 未達
+                  </label>
+                </div>
+                <div class="btn-wrap mt-3 text-center">
+                  <%= button_tag "次の質問へ", class: "tool-btn next is-active equal-width mt-3", type: "button",  data: {box_link: "q#{i+Answer::SET_NUMBER}"} %>
                 </div>
               </div>
             <% end %>
+          <% end %>
+          <div id= "q<%= Answer::MAX_NUMBER %>" class="box col-8">
+            <div class="btn-wrap mt-3 text-center">
+              <%= submit_tag '回答を保存する', class: "tool-btn next is-active equal-width mt-3 bg-light p-3", data: {box_link: "q#{Answer::MAX_NUMBER}"}  %>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

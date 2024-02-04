@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[index]
 
   get '/rules', to: 'rules#index'
-  post 'rules/update', to: 'rules#update'
+  patch 'rules/update', to: 'rules#update'
 
   resources :profiles, only: %i[show]
 

@@ -34,17 +34,17 @@ class AnswersController < ApplicationController
 
   def create
 
-  today = Time.zone.today.strftime("%Y年 %m月 %d日")
+    today = Time.zone.today.strftime("%Y年 %m月 %d日")
 
-  days = current_user.answers.pluck(:created_at)
+    days = current_user.answers.pluck(:created_at)
 
-  days.each do |d|
-    if d.strftime("%Y年 %m月 %d日") == today
-      flash.now[:notice] = "振り返りは一日一回までです！"
-      @rules = current_user.rules ||= ""
-      render action: :new and return
+    days.each do |d|
+      if d.strftime("%Y年 %m月 %d日") == today
+        flash[:alert] = "振り返りは一日一回までです！"
+        @rules = current_user.rules ||= ""
+        redirect_back(fallback_location: new_answer_path) and return
+      end
     end
-  end
 
     @rules = current_user.rules
     @child_answers = answer_params
@@ -63,15 +63,15 @@ class AnswersController < ApplicationController
         end
 
          if is_error
-          flash.now[:notice] = "振り返り実行に失敗しました"
+          flash[:error] = "振り返り実行に失敗しました"
           @rules = current_user.rules ||= ""
-          render action: :new and return
+          redirect_back(fallback_location: new_answer_path) and return
          else
           Answer.score_create(@answer)
          end
 
         flash[:notice] = "振り返りを実施しました"
-        redirect_to answer_path(@answer)
+        redirect_to answer_path(@answer) and return
       end
 
     else
@@ -79,9 +79,9 @@ class AnswersController < ApplicationController
     end
 
     if is_error
-      flash.now[:notice] = "振り返り実行に失敗しました"
+      flash[:error] = "振り返り実行に失敗しました"
       @rules = current_user.rules ||= ""
-      render action: :new and return
+      redirect_back(fallback_location: new_answer_path) and return
     end
 
   end

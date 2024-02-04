@@ -2,7 +2,7 @@
   <td style="width: 60px">
     <% if comment.user.avatar.attached? %>
       <p>
-        <%=  image_tag(comment.user.avatar, class: 'profile-icon')  %>
+        <%= link_to image_tag(comment.user.avatar, class: 'profile-icon'), "#{profile_path(comment.user)}", data: {turbolinks: false} %>
       </p>
     <% else %>
       <p>
@@ -11,7 +11,7 @@
     <% end %>
   </td>
   <td>
-    <h3 class="small"><%= comment.user.name %></h3>
+    <%= link_to comment.user.name, profile_path(comment.user), class: "small equal-color", data: {turbolinks: false} %>
     <div id="js-comment-<%= comment.id %>">
       <%= render "comments/js_comment", comment: comment %>
     </div>

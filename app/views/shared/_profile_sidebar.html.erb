@@ -6,13 +6,10 @@
         <%= sidebar_link_item('プロフィール', profile_path(current_user), data: {turbolinks: false}) %>
       </div>
       <div class="mb-3">
-        <%= sidebar_link_item('プロフィール設定', edit_user_registration_path, data: {turbolinks: false}) %>
+        <%= sidebar_link_item('アカウント設定', edit_user_registration_path, data: {turbolinks: false}) %>
       </div>
       <div class="mb-3">
-        <%= sidebar_link_item('メールアドレス設定', "#", data: {turbolinks: false}) %>
-      </div>
-      <div class="mb-3">
-        <%= sidebar_link_item('パスワード設定', new_user_password_path, data: {turbolinks: false}) %>
+        <%= sidebar_link_item('通知一覧', notifications_path, data: {turbolinks: false}) %>
       </div>
     </ul>
   </div>

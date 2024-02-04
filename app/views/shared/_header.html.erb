@@ -29,8 +29,7 @@
                 <% end %>
               <% end %>
               <div class="dropdown-menu dropdown-menu-right dropdown-menu-up" aria-labelledby="navbarDropdown">
-                <%= link_to 'プロフィール変更', edit_user_registration_path, class: 'dropdown-item', data: {turbolinks: false} %>
-                <%= link_to 'プロフィール', profile_path(current_user), class: 'dropdown-item', data: {turbolinks: false} %>
+                <%= link_to 'アカウント', profile_path(current_user), class: 'dropdown-item', data: {turbolinks: false} %>
                 <div class="dropdown-divider"></div>
                 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item', data: {turbolinks: false} %>
               </div>

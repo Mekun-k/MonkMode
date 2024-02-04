@@ -20,13 +20,13 @@ class RulesController < ApplicationController
     end
 
     if is_error
-      flash.now[:notice] = "ルール設定の更新に失敗しました"
-      @rules = current_user.rules ||= ""
-      render action: :index and return
+      flash[:error] = "ルール設定の更新に失敗しました"
+      redirect_back(fallback_location: rules_path)
+    else
+      flash[:notice] = "ルール設定を更新しました"
+      redirect_to rules_path, notice: "ルール設定を更新しました"
     end
 
-    flash[:notice] = "ルール設定を更新しました"
-    redirect_to rules_path
   end
 
   private
