@@ -1,19 +1,28 @@
-<div class="container-fluid p-0">
-  <div class="col text-center p-0">
-    <p><%= user.name %></p>
-    <div class="font-sm">
-      <div class="d-flex justify-content-center text-center">
-        <p class="mr-3"><%= user.followings.count %><span class="text-muted">フォロー中</span></p>
-        <p><%= "#{user.followers.count}" %><span class="text-muted">フォロワー</span></p>
+<div class="bg-light p-3">
+  <% if users.exists? %>
+    <% users.each do |user| %>
+      <div class="form-inline">
+        <span>
+          <%= link_to profile_path(user), data: {turbolinks: false} do %>
+            <% if user.avatar.attached? %>
+              <%= image_tag(user.avatar, class: "icon_mini") %>
+            <% else %>
+              <%= image_tag("default_user.png", class: "icon_mini") %>
+            <% end %>
+            <strong>
+              <%= user.name %>
+            </strong>
+          <% end %>
+          <span class="ml-2"><%= render "follow_btn", user: user %></span>
+        </span>
       </div>
-    </div>
-    <p><%= "#{user.self_introduction}" %></p>
-    <% if user != current_user %>
-      <% if current_user.following?(user) %>
-        <%= link_to "フォロー外す", user_relationships_path(user.id), method: :delete %>
-      <% else %>
-        <%= link_to "フォローする", user_relationships_path(user.id), method: :post %>
-      <% end %>
+      <div class="mt-2">
+        <%= user.self_introduction %>
+      </div>
+
+      <hr>
     <% end %>
-  </div>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>
 </div>

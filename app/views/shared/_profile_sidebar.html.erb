@@ -11,6 +11,12 @@
       <div class="mb-3">
         <%= sidebar_link_item('通知一覧', notifications_path, data: {turbolinks: false}) %>
       </div>
+      <div class="mb-3">
+        <%= sidebar_link_item('フォロワー', user_followers_path(current_user), data: {turbolinks: false}) %>
+      </div>
+      <div class="mb-3">
+        <%= sidebar_link_item('フォロー', user_followings_path(current_user), data: {turbolinks: false}) %>
+      </div>
     </ul>
   </div>
 </div>

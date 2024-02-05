@@ -30,7 +30,7 @@
             <%= render 'shared/flash_message' %>
             <%= yield %>
           </div>
-        <% elsif (controller_name == 'profiles' && ['show'].include?(action_name)) || (controller_name == 'registrations' && ['edit'].include?(action_name)) || (controller_name == 'notifications' && ['index'].include?(action_name)) %>
+        <% elsif (controller_name == 'profiles' && ['show'].include?(action_name)) || (controller_name == 'registrations' && ['edit'].include?(action_name)) || (controller_name == 'notifications' && ['index'].include?(action_name)) || (controller_name == 'relationships' && ['followings', 'followers'].include?(action_name)) %>
           <div class="col-2 p-0">
             <%= render'shared/profile_sidebar' %>
           </div>
