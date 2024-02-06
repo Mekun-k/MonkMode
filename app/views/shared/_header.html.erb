@@ -10,7 +10,7 @@
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
           <li class="nav-item mr-3">
-            <%= link_to 'ルール', "#", class: 'nav-link', data: {turbolinks: false} %>
+            <%= link_to 'ルール', pages_show_path, class: 'nav-link', data: {turbolinks: false} %>
           </li>
           <li class="nav-item mr-3">
             <%= link_to '振り返り', new_answer_path, class: 'nav-link', data: {turbolinks: false} %>

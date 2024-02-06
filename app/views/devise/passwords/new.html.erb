@@ -1,5 +1,5 @@
 <%= render "devise/shared/error_messages", resource: resource %>
-<div class="bg-light p-3">
+<div class="bg-light p-1">
   <h4 class="my-2">パスワード再設定</h4>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 

@@ -2,11 +2,11 @@
   <div class="diagnose-wrap">
     <div class="inner-block">
       <div class="btn-wrap">
-        <div class="bg-light p-5">
+        <div class="bg-light p-1">
           <p class="text display-4 app-name">MONK MODE</p>
           <p class="mb-0">ルールをどれだけ守れたか用意されている質問に答えることで、今日1日の自分の行動・選択を質問振り返ることができ、自分の行動を再認識することができます</p>
         </div>
-        <%= button_tag "振り返り実施", class: "tool-btn start-btn mt-3 equal-width bg-light p-3", type: "button",  data: {box_link: "q#{Answer::MIN_NUMBER}"} %>
+        <%= button_tag "振り返り実施", class: "tool-btn start-btn mt-3 equal-width bg-light p-1", type: "button",  data: {box_link: "q#{Answer::MIN_NUMBER}"} %>
       </div>
       <div class="box-wrap offset-1 p-5">
         <%= form_tag(answers_path, method: :post) do %>
@@ -85,7 +85,7 @@
           <% end %>
           <div id= "q<%= Answer::MAX_NUMBER %>" class="box col-8">
             <div class="btn-wrap mt-3 text-center">
-              <%= submit_tag '回答を保存する', class: "tool-btn next is-active equal-width mt-3 bg-light p-3", data: {box_link: "q#{Answer::MAX_NUMBER}"}  %>
+              <%= submit_tag '回答を保存する', class: "tool-btn next is-active equal-width mt-3 bg-light p-1", data: {box_link: "q#{Answer::MAX_NUMBER}"}  %>
             </div>
           </div>
         <% end %>
