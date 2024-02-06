@@ -46,12 +46,19 @@
         <% end %>
       <% else %>
         <div class="col-8 p-0 offset-2 mt-3">
-          <% if resource.errors.any? %>
-            <%= render "devise/shared/error_messages", resource: resource %>
+          <% if (controller_name == 'pages' && ['index'].include?(action_name)) %>
+            <% if flash.any? %>
+              <%= render 'shared/flash_message' %>
+            <% end %>
+            <%= yield %>
           <% else %>
-            <%= render 'shared/flash_message' %>
+            <% if resource.errors.any? %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+            <% else %>
+              <%= render 'shared/flash_message' %>
+            <% end %>
+            <%= yield %>
           <% end %>
-          <%= yield %>
         </div>
       <% end %>
     </div>

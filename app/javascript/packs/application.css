@@ -344,9 +344,8 @@ Remove comment to apply this style to date with value equal to 0
 }
 
 .app-name {
-	color: #5013B5;
-	font-family: "Playfair Display";
-	font-weight: bold;
+	color: #4501B5;
+	font-family: 'Anton', sans-serif;
 }
 
 .text-q {
