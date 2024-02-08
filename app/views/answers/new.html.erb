@@ -2,10 +2,9 @@
   <div class="diagnose-wrap">
     <div class="inner-block">
       <div class="btn-wrap">
-        <div class="bg-light p-1">
-          <p class="text display-4 app-name">MONK MODE</p>
-          <p class="mb-0">ルールをどれだけ守れたか用意されている質問に答えることで、今日1日の自分の行動・選択を質問振り返ることができ、自分の行動を再認識することができます</p>
-        </div>
+        <p class="text display-4 app-name">MONK MODE</p>
+        <span class="mb-0 text-light">設定されている質問に回答することで自分の生活を振り返ることができ、</span><br>
+        <span class="mb-0 text-light"><span class="app-name">MONKMODE</span>で設定しているルールをどれだけ守れているか確認できます。</span><br>
         <%= button_tag "振り返り実施", class: "tool-btn start-btn mt-3 equal-width bg-light p-1", type: "button",  data: {box_link: "q#{Answer::MIN_NUMBER}"} %>
       </div>
       <div class="box-wrap offset-1 p-5">

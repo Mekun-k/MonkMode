@@ -1,5 +1,5 @@
 
-<div class="bg-light p-5">
+<div class="bg-light p-1">
   <h4 class>プロフィール編集</h4>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
@@ -19,21 +19,21 @@
 
       <div class="mb-3">
         <div class="field">
-          <%= f.label :name %><br>
+          <%= f.label :name, class: "font-weight-bold" %><br>
           <%= f.text_field :name, class: "equal-width", autofocus: true %>
         </div>
       </div>
 
       <div class="mb-3">
         <div class="field">
-          <%= f.label :email %><br>
+          <%= f.label :email, class: "font-weight-bold" %><br>
           <%= f.email_field :email, class: "equal-width", autofocus: true, autocomplete: "email" %>
         </div>
       </div>
 
       <div class="mb-3">
         <div class="field">
-          <%= f.label :self_introduction %><br>
+          <%= f.label :self_introduction, class: "font-weight-bold" %><br>
           <%= f.text_area :self_introduction, class: "equal-width", autofocus: true %>
         </div>
       </div>

@@ -3,7 +3,7 @@
     <% users.each do |user| %>
       <div class="form-inline">
         <span>
-          <%= link_to profile_path(user), data: {turbolinks: false} do %>
+          <%= link_to profile_path(user), class: "equal-color", data: {turbolinks: false} do %>
             <% if user.avatar.attached? %>
               <%= image_tag(user.avatar, class: "icon_mini") %>
             <% else %>

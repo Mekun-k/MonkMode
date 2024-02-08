@@ -4,7 +4,7 @@
     <%= render "devise/shared/error_messages", resource: resource %>
     <%= f.hidden_field :reset_password_token %>
     <div class="field mb-3">
-      <%= f.label :password, "新しいパスワードを入力してください", class: "my-3" %><br />
+      <%= f.label :password, "新しいパスワードを入力してください", class: "my-3 font-weight-bold" %><br />
       <% if @minimum_password_length %>
         <em>新パスワード(<%= @minimum_password_length %>文字以上)</em><br />
       <% end %>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="field mb-5">
-      <%= f.label :password_confirmation, "パスワード確認用" %><br />
+      <%= f.label :password_confirmation, "パスワード確認用", class: "font-weight-bold" %><br />
       <%= f.password_field :password_confirmation, class: "equal-width", autocomplete: "new-password" %>
     </div>
 

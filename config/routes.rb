@@ -39,6 +39,12 @@ Rails.application.routes.draw do
   resources :pages, only: %i[index  show ] do
     collection do
       get 'answer'
+      get 'privacy_policy'
+      get 'terms_and_condition'
     end
   end
+
+  resources :contacts, only: [:new, :create]
+  post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+  post 'contacts/back', to: 'contacts#back', as: 'back'
 end
