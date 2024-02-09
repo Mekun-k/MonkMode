@@ -1,4 +1,4 @@
-<div class="col-12 bg-light p-1">
+<div class="col-12 bg-light p-1 mb-5">
   <%= form_tag rules_update_path, method: :patch do %>
     <%= submit_tag "更新", class: "my-2 equal-width" %>
     <% @rules.each_with_index do |rule, i| %>
