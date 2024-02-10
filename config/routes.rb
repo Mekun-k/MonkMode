@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[index]
 
   get '/rules', to: 'rules#index'
-  post 'rules/update', to: 'rules#update'
+  patch 'rules/update', to: 'rules#update'
 
   resources :profiles, only: %i[show]
 
@@ -39,6 +39,12 @@ Rails.application.routes.draw do
   resources :pages, only: %i[index  show ] do
     collection do
       get 'answer'
+      get 'privacy_policy'
+      get 'terms_and_condition'
     end
   end
+
+  resources :contacts, only: [:new, :create]
+  post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+  post 'contacts/back', to: 'contacts#back', as: 'back'
 end

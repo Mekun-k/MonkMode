@@ -1,42 +1,56 @@
-<h2>ユーザー編集ページ</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="bg-light p-1">
+  <h4 class>プロフィール編集</h4>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="field mb-3">
+        <% if current_user.avatar.attached? %>
+          <span class="mr-3">
+            <%= image_tag(current_user.avatar, class: 'profile-icon') %>
+          </span>
+        <% else %>
+          <span class="mr-3">
+            <%= link_to image_tag("default_user.png", class: 'profile-icon'), "#{profile_path(current_user)}", data: { turbolinks: false } %>
+          </span>
+        <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+        <%= f.file_field :avatar %>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="mb-3">
+        <div class="field">
+          <%= f.label :name, class: "font-weight-bold" %><br>
+          <%= f.text_field :name, class: "equal-width", autofocus: true %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :self_introduction %><br />
-    <%= f.text_field :self_introduction, autofocus: true %>
-  </div>
+      <div class="mb-3">
+        <div class="field">
+          <%= f.label :email, class: "font-weight-bold" %><br>
+          <%= f.email_field :email, class: "equal-width", autofocus: true, autocomplete: "email" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <% if current_user.avatar.attached? %>
-      <p>
-        <%= image_tag(current_user.avatar, class: 'profile-icon') %>
-      </p>
-    <% else %>
-      <%= link_to image_tag("default_user.png", class: 'profile-icon'), "#{profile_path(current_user)}" %>
+      <div class="mb-3">
+        <div class="field">
+          <%= f.label :self_introduction, class: "font-weight-bold" %><br>
+          <%= f.text_area :self_introduction, class: "equal-width", autofocus: true %>
+        </div>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+      <br>
+
+      <div class="actions mb-3">
+        <%= f.submit "更新", class: "equal-width" %>
+      </div>
     <% end %>
-
-    <%= f.file_field :avatar, autofocus: true %>
   </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-  <br>
 
-  <div class="actions">
-    <%= f.submit "更新" %>
-  </div>
-<% end %>
+
+
+
+

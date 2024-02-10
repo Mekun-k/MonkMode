@@ -4,7 +4,7 @@ class Users::SessionsController < Devise::SessionsController
     user = User.guest
     Rule.rule?(user)
     sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to profile_path(user), notice: 'ゲストユーザーとしてログインしました。'
   end
 
 end

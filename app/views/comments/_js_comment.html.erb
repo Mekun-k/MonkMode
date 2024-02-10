@@ -6,7 +6,7 @@
                             class: "form-control comment-post-error",
                             style: "display:none;" %>
 
-  <div id="js-comment-button-<%= comment.id %>" style="display: none;">
+  <div id="js-comment-button-<%= comment.id %>" style="display: none;" class="equal-width">
     <button data-cancel-id=<%= comment.id %> type="button" class="comment-button comment-cancel-button">キャンセル</button>
     <%= f.submit "更新", class: "comment-button comment-update-button" %>
   </div>

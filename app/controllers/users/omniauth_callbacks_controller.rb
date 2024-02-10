@@ -20,15 +20,17 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if @user.persisted?
       sign_in @user
-      redirect_to root_path
+      redirect_to profile_path(@user)
+      flash[:notice] = "ログインしました"
     else
       redirect_to new_user_registration_path
+      flash[:error] = "ログインに失敗しました"
     end
 
   end
 
   def failure
-    redirect_to root_path and return
+    redirect_to pages_path and return
   end
 
 end

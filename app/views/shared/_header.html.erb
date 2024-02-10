@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <% if user_signed_in? %>
+      <%= link_to 'MONK MODE', profile_path(current_user), class: 'app-logo mr-5' %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item mr-3">
+            <%= link_to 'ルール', pages_show_path, class: 'nav-link text-light' %>
+          </li>
+          <li class="nav-item mr-3">
+            <%= link_to '振り返り', new_answer_path, class: 'nav-link text-light' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '掲示板', board_answers_path, class: 'nav-link text-light' %>
+          </li>
+      </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown mr-4">
+              <%= link_to "#", class: 'nav-link dropdown-toggle', id: 'navbarDropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false', data: {toggle: 'dropdown', turbolinks: false} do %>
+                <% if current_user.avatar.attached? %>
+                  <%= image_tag(current_user.avatar, class: 'icon_mini') %>
+                <% else %>
+                  <%= image_tag("default_user.png", class: 'icon_mini') %>
+                <% end %>
+              <% end %>
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-up" aria-labelledby="navbarDropdown">
+                <%= link_to 'アカウント', profile_path(current_user), class: 'dropdown-item' %>
+                <div class="dropdown-divider"></div>
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+              </div>
+            </li>
+
+            <li class="nav-item d-flex align-items-center">
+              <%= render '/shared/circle', class: 'nav-link' %>
+            </li>
+          </ul>
+
+
+
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'サインアップ', new_user_registration_path, class: 'nav-link text-light' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-light' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

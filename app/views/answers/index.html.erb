@@ -1,5 +1,5 @@
-<h1>回答一覧</h1>
-
-<%= render partial: '/shared/answer_link' %>
-
 <%= render partial: '/shared/answer_form', locals: { answers: @answers } %>
+
+<div class="mb-5">
+  <%= paginate @answers %>
+</div>
