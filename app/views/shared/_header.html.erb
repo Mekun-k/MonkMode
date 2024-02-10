@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
     <% if user_signed_in? %>
-      <%= link_to 'MONK MODE', profile_path(current_user), class: 'app-logo mr-5', data: {turbolinks: false} %>
+      <%= link_to 'MONK MODE', profile_path(current_user), class: 'app-logo mr-5' %>
     <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -10,13 +10,13 @@
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
           <li class="nav-item mr-3">
-            <%= link_to 'ルール', pages_show_path, class: 'nav-link text-light', data: {turbolinks: false} %>
+            <%= link_to 'ルール', pages_show_path, class: 'nav-link text-light' %>
           </li>
           <li class="nav-item mr-3">
-            <%= link_to '振り返り', new_answer_path, class: 'nav-link text-light', data: {turbolinks: false} %>
+            <%= link_to '振り返り', new_answer_path, class: 'nav-link text-light' %>
           </li>
           <li class="nav-item">
-            <%= link_to '掲示板', board_answers_path, class: 'nav-link text-light', data: {turbolinks: false} %>
+            <%= link_to '掲示板', board_answers_path, class: 'nav-link text-light' %>
           </li>
       </ul>
           <ul class="navbar-nav ml-auto">
@@ -29,9 +29,9 @@
                 <% end %>
               <% end %>
               <div class="dropdown-menu dropdown-menu-right dropdown-menu-up" aria-labelledby="navbarDropdown">
-                <%= link_to 'アカウント', profile_path(current_user), class: 'dropdown-item', data: {turbolinks: false} %>
+                <%= link_to 'アカウント', profile_path(current_user), class: 'dropdown-item' %>
                 <div class="dropdown-divider"></div>
-                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item', data: {turbolinks: false} %>
+                <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
               </div>
             </li>
 

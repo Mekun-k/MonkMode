@@ -2,7 +2,7 @@
 <% visited = notification.visited %>
   <div class="form-inline">
     <span>
-      <%= link_to profile_path(visitor), class: "equal-color", data: {turbolinks: false} do %>
+      <%= link_to profile_path(visitor), class: "equal-color" do %>
         <% if visitor.avatar.attached? %>
           <%= image_tag(visitor.avatar, class: "icon_mini") %>
         <% else %>
@@ -18,14 +18,14 @@
       <% when 'follow' then %>
         <%= "あなたをフォローしました" %>
       <% when 'favorite' then %>
-        <%= link_to 'あなたの投稿', notification.answer, class: "equal-color", style: "font-weight: bold;", data: {turbolinks: false} %>
+        <%= link_to 'あなたの投稿', notification.answer, class: "equal-color", style: "font-weight: bold;" %>
         <%= "にいいねしました" %>
       <% when 'comment' then %>
         <% if notification.answer.user_id == visited.id %>
-          <%= link_to "あなたの投稿", notification.answer, class: "equal-color", style: "font-weight: bold;", data: {turbolinks: false} %>
+          <%= link_to "あなたの投稿", notification.answer, class: "equal-color", style: "font-weight: bold;" %>
         <% else %>
           <span>
-            <%= link_to answer_path(notification.answer), class: "equal-color", data: {turbolinks: false} do %>
+            <%= link_to answer_path(notification.answer), class: "equal-color" do %>
               <%= image_tag(notification.answer.user.avatar, class: "icon_mini") %>
               <strong>
                 <%= notification.answer.user.name + 'さんの投稿' %>

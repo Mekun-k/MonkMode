@@ -11,17 +11,17 @@
         </p>
       <% else %>
         <p>
-          <%= link_to image_tag("default_user.png", class: 'profile-icon'), "#{profile_path(@user)}", data: {turbolinks: false} %>
+          <%= link_to image_tag("default_user.png", class: 'profile-icon'), "#{profile_path(@user)}" %>
         </p>
       <% end %>
       <div class="mt-2">
         <p><%= @user.name %></p>
         <div class="font-sm">
           <div class="d-flex justify-content-center text-center">
-            <%= link_to user_followings_path(@user), data: {turbolinks: false} do %>
+            <%= link_to user_followings_path(@user) do %>
               <p class="mr-3"><%= @user.followings.count %><span class="text-muted">フォロー中</span></p>
             <% end %>
-            <%= link_to user_followers_path(@user), data: {turbolinks: false} do %>
+            <%= link_to user_followers_path(@user) do %>
               <p><%= "#{@user.followers.count}" %><span class="text-muted">フォロワー</span></p>
             <% end %>
           </div>
