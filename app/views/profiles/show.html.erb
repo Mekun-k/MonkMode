@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-6">
-    <%= render partial: '/shared/answer_form', locals: { answers: @user.answers } %>
+    <%= render partial: '/shared/answer_form', locals: { answers: @answers } %>
   </div>
 
   <div class="col-3 offset-3 text-center p-0">
@@ -37,4 +37,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="mb-5">
+  <%= paginate @answers %>
 </div>

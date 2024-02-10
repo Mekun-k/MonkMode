@@ -382,3 +382,17 @@ footer {
 header {
   background: #326788 !important;
 }
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  position: static;
+  background: #93c9ff;
+}
+
+.pagination {
+  justify-content: center;
+}

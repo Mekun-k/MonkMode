@@ -2,11 +2,11 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @answers = current_user.answers
+    @answers = current_user.answers.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def board
-    @answers = Answer.all.includes(:user)
+    @answers = Answer.all.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   def new

@@ -5,38 +5,17 @@ User.create(
   password: SecureRandom.urlsafe_base64(n = 10)
 )
 
-Answer.create(
-  user_id: 1,
-  score: -10,
-  created_at: Time.zone.parse('2024-01-09 12:00:00')
-)
+now = Time.current
+beginning_day = now.beginning_of_month
+end_day = now.end_of_month
 
-Answer.create(
-  user_id: 1,
-  score: -5,
-  created_at: Time.zone.parse('2024-01-10 12:00:00')
-)
+MAX_SCORE = -15
+MIN_SCORE = 15
 
-Answer.create(
-  user_id: 1,
-  score: 0,
-  created_at: Time.zone.parse('2024-01-11 12:00:00')
-)
-
-Answer.create(
-  user_id: 1,
-  score: 5,
-  created_at: Time.zone.parse('2024-01-12 12:00:00')
-)
-
-Answer.create(
-  user_id: 1,
-  score: 10,
-  created_at: Time.zone.parse('2024-01-13 12:00:00')
-)
-
-Answer.create(
-  user_id: 1,
-  score: 15,
-  created_at: Time.zone.parse('2024-01-14 12:00:00')
-)
+18.times do
+  Answer.create(
+    user_id: 1,
+    score: Random.rand(MAX_SCORE..MIN_SCORE),
+    created_at: Random.rand(beginning_day..end_day)
+  )
+end
