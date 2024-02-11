@@ -30,7 +30,11 @@ class ContactsController < ApplicationController
     if @contact.save
       ContactMailer.send_mail(@contact).deliver_now
       flash[:notice] = "お問い合わせメールの送信が完了しました。"
-      redirect_to profile_path(current_user)
+      if user_signed_in?
+        redirect_to profile_path(current_user)
+      else
+        redirect_to root_path
+      end
     else
       render :new
     end
