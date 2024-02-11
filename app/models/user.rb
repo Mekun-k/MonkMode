@@ -25,6 +25,9 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   validates :self_introduction, length: { maximum: 140 }
+  validates :email, presence: true
+  validates :name, presence: true
+
 
   def map(user)
     answers = user.answers
