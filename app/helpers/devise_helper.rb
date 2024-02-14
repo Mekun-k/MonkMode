@@ -13,19 +13,16 @@ module DeviseHelper
   def devise_error_messages!
     return "" if resource.errors.empty?
 
-    html = ""
-    messages = resource.errors.full_messages.each do |errmsg|
-      html += <<-EOF
+    resource.errors.full_messages.map do |errmsg|
+      <<-EOF
       <div class="alert alert-error alert-dismissible fade show mb-0">
         #{errmsg}
       </div>
       EOF
-    end
-    html.html_safe
+    end.join
   end
 
   def devise_error_messages?
-    resource.errors.empty? ? false : true
+    !resource.errors.empty?
   end
-
 end

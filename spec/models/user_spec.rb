@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+describe User do # rubocop:disable Metrics/BlockLength
 
   describe 'ユーザー登録' do
     # 1
@@ -129,6 +129,7 @@ describe User do
       notification1 = FactoryBot.create(:notification, visitor_id: another_user1.id, visited_id: user.id, answer_id: answer.id, comment_id: comment.id, action: "comment", checked: false)
       notification2 = FactoryBot.create(:notification, visitor_id: another_user2.id, visited_id: user.id, answer_id: answer.id, comment_id: comment.id, action: "comment", checked: false)
 
+      user.reload
       expect(user.passive_notifications).to include(notification1, notification2)
     end
   end
@@ -139,8 +140,8 @@ describe User do
     describe '#map(user) が正常に動くか' do
       it "ヒートマップの値が生成されるか" do
         user = FactoryBot.create(:user)
-        answer1 = FactoryBot.create(:answer, user: user, created_at: Time.now - 1.day, score: 5)
-        answer2 = FactoryBot.create(:answer, user: user, created_at: Time.now - 2.days, score: 10)
+        answer1 = FactoryBot.create(:answer, user: user, created_at: Time.zone.now - 1.day, score: 5)
+        answer2 = FactoryBot.create(:answer, user: user, created_at: Time.zone.now - 2.days, score: 10)
 
         heatmap_value = user.map(user)
 

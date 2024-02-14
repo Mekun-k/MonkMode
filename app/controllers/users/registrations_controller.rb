@@ -26,6 +26,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update # rubocop:disable Lint/UselessMethodDefinition
+    super
+  end
+
+  def destroy # rubocop:disable Lint/UselessMethodDefinition
+    super
+  end
+
   protected
 
   def update_resource(resource, params)
