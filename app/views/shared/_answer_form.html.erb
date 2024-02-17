@@ -2,7 +2,7 @@
   <% answers.each do |answer| %>
     <div class="container mb-3 bg-light">
       <div class="d-flex flex-wrap pt-2">
-        <%= link_to profile_path(answer.user), data: { turbolinks: false } do %>
+        <%= link_to profile_path(answer.user) do %>
           <% if answer.user.avatar.attached? %>
             <%= image_tag(answer.user.avatar, class: 'profile-icon-default') %>
           <% else %>
@@ -10,9 +10,9 @@
           <% end %>
           <span class="equal-color mx-2"><%= answer.user.name %></span>
         <% end %>
-        <%= link_to "#{answer.created_at.strftime('%Y/%m/%d') }", answer_path(answer), class: "equal-color mt-1", data: { turbolinks: false } %>
+        <%= link_to "#{answer.created_at.strftime('%Y/%m/%d') }", answer_path(answer), class: "equal-color mt-1" %>
       </div>
-      <%= link_to answer_path(answer), data: { turbolinks: false } do %>
+      <%= link_to answer_path(answer) do %>
         <p class="equal-color my-3"><%= "スコア#{answer.score}点" %></p>
         <p class="equal-color my-3"><%= "達成率#{Answer.success_result(answer)}/15" %></p>
       <% end %>
