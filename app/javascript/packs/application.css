@@ -396,3 +396,31 @@ header {
 .pagination {
   justify-content: center;
 }
+
+.pages-index {
+  height: 60vw;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url("/images/top_bg.png");
+  background-position: center;
+  background-size: cover;
+  position:relative;
+}
+
+.pates-text {
+  position:absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%,-50%);
+}
+
+.overflow-hidden {
+  overflow-y: hidden;
+}
+
+.z-index-10 {
+  z-index: 10;
+  position: relative;
+}
