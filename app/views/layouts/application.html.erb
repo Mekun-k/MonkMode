@@ -32,27 +32,27 @@
         <% if user_signed_in? %>
           <% if (controller_name == 'answers' && ['new', 'index', 'show'].include?(action_name)) || (controller_name == 'rules' && ['index'].include?(action_name)) %>
             <div class="row">
-              <div class="col-2 p-0">
+              <div class="col-2">
                 <%= render 'shared/answer_sidebar' %>
               </div>
-              <div class="col-8 p-0 offset-1 mt-3">
+              <div class="col-8 offset-1 mt-3">
                 <%= render 'shared/flash_message' %>
                 <%= yield %>
               </div>
             </div>
           <% elsif (controller_name == 'profiles' && ['show'].include?(action_name)) || (controller_name == 'registrations' && ['edit'].include?(action_name)) || (controller_name == 'notifications' && ['index'].include?(action_name)) || (controller_name == 'relationships' && ['followings', 'followers'].include?(action_name)) %>
             <div class="row">
-              <div class="col-2 p-0">
+              <div class="col-2">
                 <%= render'shared/profile_sidebar' %>
               </div>
-              <div class="col-8 p-0 offset-1 mt-3">
+              <div class="col-8 offset-1 mt-3">
                 <%= render 'shared/flash_message' %>
                 <%= yield %>
               </div>
             </div>
           <% else %>
             <div class="row">
-              <div class="col-8 p-0 offset-2 mt-3">
+              <div class="col-8 offset-2 mt-3">
                 <%= render 'shared/flash_message' %>
                 <%= yield %>
               </div>
@@ -61,7 +61,7 @@
         <% else %>
           <% if (controller_name == 'pages' && ['privacy_policy', 'terms_and_condition'].include?(action_name)) || (controller_name == 'contacts' && ['new', 'confirm', 'back', ].include?(action_name)) %>
             <div class="row">
-              <div class="col-8 p-0 offset-2 mt-3">
+              <div class="col-8 offset-2 mt-3">
                 <% if flash.any? %>
                   <%= render 'shared/flash_message' %>
                 <% end %>
@@ -77,7 +77,7 @@
             <%= yield %>
           <% else %>
             <div class="row">
-              <div class="col-8 p-0 offset-2 mt-3">
+              <div class="col-8 offset-2 mt-3">
                 <% if resource.errors.any? %>
                   <%= render "devise/shared/error_messages", resource: resource %>
                 <% else %>
