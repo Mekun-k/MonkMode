@@ -32,18 +32,18 @@
 
   <div class="border-bottom my-3">
     <div class="row mb-2">
-      <div class="col-10">
+      <div class="col-7 ml-5">
         <h4 class="my-3">ルール一覧</h4>
       </div>
-      <div class="col-2">
-        <h4 class="my-3 text-right">回答</h4>
+      <div class="col-2 offset-1">
+        <h4 class="my-3 text-left">回答</h4>
       </div>
     </div>
 
     <% @child_answers.each_with_index do |child_answers, i| %>
       <% if child_answers.rule.rule_title == "" && child_answers.rule.rule_type_id == true %>
         <div class="row mb-2">
-          <div class="col-11">
+          <div class="col-8 ml-5">
             <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_content %>
           </div>
           <div class="col-1 text-center">
@@ -52,7 +52,7 @@
         </div>
       <% elsif child_answers.rule.rule_type_id == true %>
         <div class="row mb-2">
-          <div class="col-11">
+          <div class="col-8 ml-5">
             <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_content + child_answers.rule.rule_title%>
           </div>
           <div class="col-1 text-center">
@@ -61,7 +61,7 @@
         </div>
       <% else %>
         <div class="row mb-2">
-          <div class="col-11">
+          <div class="col-8 ml-5">
             <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_title %>
           </div>
           <div class="col-1 text-center">

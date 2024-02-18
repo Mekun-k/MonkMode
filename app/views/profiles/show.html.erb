@@ -3,7 +3,7 @@
     <%= render partial: '/shared/answer_form', locals: { answers: @answers } %>
   </div>
 
-  <div class="col-3 offset-3 text-center p-0">
+  <div class="col-3 offset-3 text-center">
     <div class="bg-light p-4">
       <% if @user.avatar.attached? %>
         <p>
@@ -19,10 +19,10 @@
         <div class="font-sm">
           <div class="d-flex justify-content-center text-center">
             <%= link_to user_followings_path(@user) do %>
-              <p class="mr-3"><%= @user.followings.count %><span class="text-muted">フォロー中</span></p>
+              <p class="mr-3"><%= @user.followings.count %><span class="small text-muted">フォロー中</span></p>
             <% end %>
             <%= link_to user_followers_path(@user) do %>
-              <p><%= "#{@user.followers.count}" %><span class="text-muted">フォロワー</span></p>
+              <p><%= "#{@user.followers.count}" %><span class="small text-muted">フォロワー</span></p>
             <% end %>
           </div>
         </div>

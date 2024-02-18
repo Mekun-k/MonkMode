@@ -13,18 +13,20 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy, inverse_of: :follower
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy, inverse_of: :followed
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
-  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
-  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+  has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy, inverse_of: :visitor
+  has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy, inverse_of: :visited
 
   has_one_attached :avatar
 
   validates :self_introduction, length: { maximum: 140 }
+  validates :email, presence: true
+  validates :name, presence: true
+
 
   def map(user)
     answers = user.answers
@@ -53,7 +55,7 @@ class User < ApplicationRecord
   GUEST_USER_EMAIL = 'guest@example.com'.freeze
 
   def skip_confirmation!
-    self.confirmed_at = Time.now
+    self.confirmed_at = Time.zone.now
   end
 
   private
@@ -76,7 +78,7 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64(n = 10)
       user.name = "ゲスト"
       user.self_introduction = "閲覧用のアカウントです"
-      user.confirmed_at = Time.now
+      user.confirmed_at = Time.zone.now
     end
   end
 

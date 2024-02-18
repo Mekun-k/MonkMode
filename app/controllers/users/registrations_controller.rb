@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
   before_action :ensure_normal_user, only: %i[update destroy]
+  rescue_from ActiveRecord::RecordNotUnique, with: :handle_duplicate_record
 
   def new
     super
@@ -25,6 +26,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update # rubocop:disable Lint/UselessMethodDefinition
+    super
+  end
+
+  def destroy # rubocop:disable Lint/UselessMethodDefinition
+    super
+  end
+
   protected
 
   def update_resource(resource, params)
@@ -41,5 +50,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :self_introduction)
+  end
+
+  private
+
+  def handle_duplicate_record
+    flash.now[:error] = "その名前は既に使用されています。別の名前を選択してください。"
+    render action: :new and return
   end
 end

@@ -12,6 +12,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cal-heatmap/3.6.2/cal-heatmap.min.js"></script>
 
+    <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body style="background-color: #2B546A;">
@@ -26,49 +27,68 @@
       <%= render "shared/header" %>
     </header>
 
-    <div class="container-fluid">
-      <div class="row">
+    <div class="container-fluid p-0">
+
         <% if user_signed_in? %>
           <% if (controller_name == 'answers' && ['new', 'index', 'show'].include?(action_name)) || (controller_name == 'rules' && ['index'].include?(action_name)) %>
-            <div class="col-2 p-0">
-              <%= render 'shared/answer_sidebar' %>
-            </div>
-            <div class="col-8 p-0 offset-1 mt-3">
-              <%= render 'shared/flash_message' %>
-              <%= yield %>
+            <div class="row">
+              <div class="col-2">
+                <%= render 'shared/answer_sidebar' %>
+              </div>
+              <div class="col-8 offset-1 mt-3">
+                <%= render 'shared/flash_message' %>
+                <%= yield %>
+              </div>
             </div>
           <% elsif (controller_name == 'profiles' && ['show'].include?(action_name)) || (controller_name == 'registrations' && ['edit'].include?(action_name)) || (controller_name == 'notifications' && ['index'].include?(action_name)) || (controller_name == 'relationships' && ['followings', 'followers'].include?(action_name)) %>
-            <div class="col-2 p-0">
-              <%= render'shared/profile_sidebar' %>
-            </div>
-            <div class="col-8 p-0 offset-1 mt-3">
-              <%= render 'shared/flash_message' %>
-              <%= yield %>
+            <div class="row">
+              <div class="col-2">
+                <%= render'shared/profile_sidebar' %>
+              </div>
+              <div class="col-8 offset-1 mt-3">
+                <%= render 'shared/flash_message' %>
+                <%= yield %>
+              </div>
             </div>
           <% else %>
-            <div class="col-8 p-0 offset-2 mt-3">
-              <%= render 'shared/flash_message' %>
-              <%= yield %>
+            <div class="row">
+              <div class="col-8 offset-2 mt-3">
+                <%= render 'shared/flash_message' %>
+                <%= yield %>
+              </div>
             </div>
           <% end %>
         <% else %>
-          <div class="col-8 p-0 offset-2 mt-3">
-            <% if (controller_name == 'pages' && ['index'].include?(action_name)) %>
-              <% if flash.any? %>
+          <% if (controller_name == 'pages' && ['privacy_policy', 'terms_and_condition'].include?(action_name)) || (controller_name == 'contacts' && ['new', 'confirm', 'back', ].include?(action_name)) %>
+            <div class="row">
+              <div class="col-8 offset-2 mt-3">
+                <% if flash.any? %>
+                  <%= render 'shared/flash_message' %>
+                <% end %>
+                <%= yield %>
+              </div>
+            </div>
+          <% elsif (controller_name == 'pages' && ['index'].include?(action_name)) %>
+            <% if flash.any? %>
+              <div class="z-index-10">
                 <%= render 'shared/flash_message' %>
-              <% end %>
-              <%= yield %>
-            <% else %>
-              <% if resource.errors.any? %>
-                <%= render "devise/shared/error_messages", resource: resource %>
-              <% else %>
-                <%= render 'shared/flash_message' %>
-              <% end %>
-              <%= yield %>
+              </div>
             <% end %>
-          </div>
+            <%= yield %>
+          <% else %>
+            <div class="row">
+              <div class="col-8 offset-2 mt-3">
+                <% if resource.errors.any? %>
+                  <%= render "devise/shared/error_messages", resource: resource %>
+                <% else %>
+                  <%= render 'shared/flash_message' %>
+                <% end %>
+                <%= yield %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
-      </div>
+
     </div>
     <footer>
       <%= render "shared/footer" %>

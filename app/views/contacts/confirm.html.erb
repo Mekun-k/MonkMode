@@ -11,16 +11,12 @@
 
   <%= form_for(@contact) do |f| %>
     <%= f.hidden_field :name %>
-    <%= f.hidden_field :email %>
-    <%= f.hidden_field :subject %>
     <%= f.hidden_field :message %>
     <div class="mt-3"><%= f.submit '送信' %></div>
   <% end %>
 
   <%= form_for @contact, url: back_path do |f| %>
     <%= f.hidden_field :name %>
-    <%= f.hidden_field :email %>
-    <%= f.hidden_field :subject %>
     <%= f.hidden_field :message %>
     <div class="mt-3"><%= f.submit '入力画面に戻る' %></div>
   <% end %>

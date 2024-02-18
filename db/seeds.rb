@@ -68,11 +68,6 @@ Rule.rule_setting(user)
 
 rules = Rule.all
 
-# random_date = Random.rand(beginning_day..end_day)
-# while random_date.to_date == now.to_date
-#   random_date = Random.rand(beginning_day..end_day)
-# end
-
 generated_dates = []
 
 18.times do
