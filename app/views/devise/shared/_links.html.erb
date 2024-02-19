@@ -5,7 +5,6 @@
 <%- if devise_mapping.omniauthable? %>
   <%= button_to "Googleでログイン", omniauth_authorize_path(:user, :google_oauth2), class: "equal-width" , data: { turbo: false } %><br />
   <%= button_to "Twitterでログイン", omniauth_authorize_path(:user, :twitter), class: "equal-width", data: { turbo: false } %><br />
-  <%= button_to "Facebookでログイン", omniauth_authorize_path(:user, :facebook), class: "equal-width" , data: { turbo: false } %><br />
 <% end %>
 
 <div class="mb-1">
