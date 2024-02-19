@@ -58,7 +58,7 @@ class Rule < ApplicationRecord
   ]
 
   def self.rule_setting(user)
-    RULE_TITLES.zip(RULE_CONTENTS, RULE_TYPES).first(15).each { |title , content , type|
+    RULE_TITLES.zip(RULE_CONTENTS, RULE_TYPES).first(Answer::HASH_MAX_NUMBER).each { |title , content , type|
       Rule.create(
         rule_title: title,
         rule_content: content,

@@ -52,7 +52,7 @@ class AnswersController < ApplicationController
 
     is_error = false
 
-    if @child_answers['value'].to_hash.size == 15
+    if @child_answers['value'].to_hash.size == Answer::HASH_MAX_NUMBER
 
       if @answer.save
         @child_answers['value'].each do |key, value|

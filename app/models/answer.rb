@@ -10,6 +10,7 @@ class Answer < ApplicationRecord
   MIN_NUMBER = 1
   SET_NUMBER = 2
   MAX_NUMBER = 16
+  HASH_MAX_NUMBER = 15
 
   def create_notification_favorite!(current_user)
     notification_favorite = Notification.where(["visitor_id = ? and visited_id = ? and answer_id = ? and action = ? ", current_user.id, user_id, id, 'favorite'])
@@ -61,7 +62,7 @@ class Answer < ApplicationRecord
     child_answers = answer.child_answers
     content = child_answers.pluck(:content)
 
-    if content.count == 15
+    if content.count == Answer::HASH_MAX_NUMBER
       success_result = content.count(true) * NUMBERSET
       failure_result = content.count(false) * -NUMBERSET
       answer.score = success_result + failure_result
