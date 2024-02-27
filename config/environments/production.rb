@@ -118,4 +118,20 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
   ENV['NODE_OPTIONS'] = '--openssl-legacy-provider'
+
+  config.action_mailer.default_url_options = { host: 'https://www.monkmode.site/' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default :charset => "utf-8"
+  # Gmail の場合
+  config.action_mailer.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => 'smtp.gmail.com',
+    domain: 'gmail.com',
+    :port => 587,
+    :user_name => ENV['COMFIRMABLE_ADDRESS'],
+    :password => ENV['COMFIRMABLE_PASSWORD'],
+    authentication: :login
+  }
 end
