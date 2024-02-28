@@ -64,8 +64,7 @@ class Answer < ApplicationRecord
 
     if content.count == Answer::HASH_MAX_NUMBER
       success_result = content.count(true) * NUMBERSET
-      failure_result = content.count(false) * -NUMBERSET
-      answer.score = success_result + failure_result
+      answer.score = success_result
       answer.save
     else
       is_error = true

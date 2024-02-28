@@ -90,4 +90,13 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+  def self.levelup(answer)
+    user = answer.user
+    totalexp = user.experience_point
+    totalexp += answer.score
+
+    user.experience_point = totalexp
+    user.update(experience_point: totalexp)
+  end
 end

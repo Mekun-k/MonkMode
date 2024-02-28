@@ -26,7 +26,7 @@ class AnswersController < ApplicationController
     @answer.user.map(current_user)
 
     @twitter_share_url = answer_url(@answer)
-    twitter_share_text = "【今日の振り返り】\n\n・スコア: #{@answer.score}点\n・達成率: #{Answer.success_result(@answer)}/15\n\n詳細はこちら▼"
+    twitter_share_text = "【今日の振り返り】\n\n・経験値: #{@answer.score}Exp\n・達成率: #{Answer.success_result(@answer)}/15\n\n詳細はこちら▼"
     @encodedText = URI.encode_www_form_component(twitter_share_text)
     twitter_share_tags = ["MonkMode", "モンクモード"]
     @hashtags = URI.encode_www_form_component(twitter_share_tags.join(","))
@@ -49,6 +49,7 @@ class AnswersController < ApplicationController
     @rules = current_user.rules
     @child_answers = answer_params
     @answer = Answer.new(user_id: current_user.id)
+    @user = @answer.user
 
     is_error = false
 
@@ -69,6 +70,17 @@ class AnswersController < ApplicationController
          else
           Answer.score_create(@answer)
          end
+
+        User.levelup(@answer)
+
+        levelsetting = LevelSetting.find_by(level: @user.level + 1)
+
+        if levelsetting.thresold <= @user.experience_point
+          @user.level = @user.level + 1
+          @user.update(level: @user.level)
+          flash[:notice] = "振り返りを実施しました。MONK Lv.#{@user.level}に上がった！"
+          redirect_to answer_path(@answer) and return
+        end
 
         flash[:notice] = "振り返りを実施しました"
         redirect_to answer_path(@answer) and return

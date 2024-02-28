@@ -3,7 +3,7 @@
     <div class="d-flex flex-wrap mb-3">
       <span class="mr-3"><%= @answer.created_at.strftime('%Y/%m/%d') %></span>
       <span class="mr-3"><%= @answer.user.name %></span>
-      <span class="mr-3"><%= "スコア#{@answer.score}点" %></span>
+      <span class="mr-3"><%= "経験値#{@answer.score}Exp" %></span>
       <span class="mr-3"><%= "達成率#{Answer.success_result(@answer)}/15" %></span>
 
       <div id="favorite_btn_<%= @answer.id %>" class="mr-3">

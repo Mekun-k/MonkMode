@@ -52,6 +52,10 @@ RULE_TYPES = [
   false
 ]
 
+LEVELS = [
+  1,2,3,4,5,6,7,8,9,10,11,12,13,14,
+]
+
 now = Time.current
 beginning_day = now.beginning_of_month
 end_day = now.end_of_month
@@ -97,3 +101,28 @@ generated_dates = []
 
   Answer.score_create(answer)
 end
+
+level = 1
+thresold = 1
+
+100.times do
+  LevelSetting.create(level: level, thresold: thresold)
+
+  level += 1
+  thresold += 10
+end
+
+user.experience_point = user.answers.pluck(:score).sum
+user.save
+
+loop do
+  levelsetting = LevelSetting.find_by(level: user.level + 1)
+
+  # 次のレベルの閾値を超えていない場合はループを終了
+  break if levelsetting.thresold > user.experience_point
+
+  # レベルアップ
+  user.level += 1
+  user.save
+end
+
