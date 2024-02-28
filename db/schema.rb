@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_12_202020) do
+ActiveRecord::Schema.define(version: 2024_02_27_203501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,13 @@ ActiveRecord::Schema.define(version: 2024_02_12_202020) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "level_settings", force: :cascade do |t|
+    t.integer "level", default: 1, null: false
+    t.integer "thresold", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
@@ -146,6 +153,8 @@ ActiveRecord::Schema.define(version: 2024_02_12_202020) do
     t.string "uid"
     t.string "avatar"
     t.string "self_introduction"
+    t.integer "level", default: 1, null: false
+    t.integer "experience_point", default: 0, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
