@@ -33,18 +33,7 @@ class AnswersController < ApplicationController
   end
 
   def create
-
-    today = Time.zone.today.strftime("%Y年 %m月 %d日")
-
-    days = current_user.answers.pluck(:created_at)
-
-    days.each do |d|
-      if d.strftime("%Y年 %m月 %d日") == today
-        flash[:alert] = "振り返りは一日一回までです！"
-        @rules = current_user.rules ||= ""
-        redirect_back(fallback_location: new_answer_path) and return
-      end
-    end
+    check_duplicate_answer
 
     @rules = current_user.rules
     @child_answers = answer_params
@@ -54,53 +43,65 @@ class AnswersController < ApplicationController
     is_error = false
 
     if @child_answers['value'].to_hash.size == Answer::HASH_MAX_NUMBER
-
       if @answer.save
         @child_answers['value'].each do |key, value|
-          if !(ChildAnswer.answer_setting(current_user, @answer, key, value))
+          unless ChildAnswer.answer_setting(current_user, @answer, key, value)
             is_error = true
             break
           end
         end
 
-         if is_error
+        if is_error
           flash[:error] = "振り返り実行に失敗しました"
-          @rules = current_user.rules ||= ""
-          redirect_back(fallback_location: new_answer_path) and return
-         else
+          set_rules_and_redirect and return
+        else
           Answer.score_create(@answer)
-         end
+        end
 
         User.levelup(@answer)
 
         levelsetting = LevelSetting.find_by(level: @user.level + 1)
 
         if levelsetting.thresold <= @user.experience_point
-          @user.level = @user.level + 1
+          @user.level += 1
           @user.update(level: @user.level)
           flash[:notice] = "振り返りを実施しました。MONK Lv.#{@user.level}に上がった！"
-          redirect_to answer_path(@answer) and return
+        else
+          flash[:notice] = "振り返りを実施しました"
         end
-
-        flash[:notice] = "振り返りを実施しました"
         redirect_to answer_path(@answer) and return
       end
-
     else
       is_error = true
     end
 
     if is_error
       flash[:error] = "振り返り実行に失敗しました"
-      @rules = current_user.rules ||= ""
-      redirect_back(fallback_location: new_answer_path) and return
+      set_rules_and_redirect and return
     end
-
   end
 
   private
 
   def answer_params
     params.require(:answer).permit(value: {})
+  end
+
+  def check_duplicate_answer
+    today = Time.zone.today.strftime("%Y年 %m月 %d日")
+    days = current_user.answers.pluck(:created_at)
+
+    days.each do |d|
+      if d.strftime("%Y年 %m月 %d日") == today
+        flash[:alert] = "振り返りは一日一回までです！"
+        set_rules_and_redirect
+        return
+      end
+    end
+  end
+
+  def set_rules_and_redirect
+    @rules = current_user.rules ||= ""
+    redirect_back(fallback_location: new_answer_path)
   end
 end

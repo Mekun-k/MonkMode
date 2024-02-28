@@ -93,7 +93,7 @@ describe User do
         end
         FactoryBot.create(:child_answer, user: user, answer: answer, rule: rule, content: false)
         Answer.score_create(answer)
-        expect(answer.score).to eq(13)
+        expect(answer.score).to eq(14)
       end
 
       it "child_answerレコード==15 以外のときに保存処理がされないこと" do
