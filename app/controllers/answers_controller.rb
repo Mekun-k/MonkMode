@@ -34,50 +34,45 @@ class AnswersController < ApplicationController
 
   def create
     check_duplicate_answer
-
+  rescue StandardError
+    flash[:error] = "振り返り実行に失敗しました"
+    @rules = current_user.rules ||= ""
+    redirect_to new_answer_path
+  else
     @rules = current_user.rules
     @child_answers = answer_params
     @answer = Answer.new(user_id: current_user.id)
     @user = @answer.user
 
-    is_error = false
-
     if @child_answers['value'].to_hash.size == Answer::HASH_MAX_NUMBER
-      if @answer.save
-        @child_answers['value'].each do |key, value|
-          unless ChildAnswer.answer_setting(current_user, @answer, key, value)
-            is_error = true
-            break
+      ActiveRecord::Base.transaction do
+        if @answer.save
+          @child_answers['value'].each do |key, value|
+            ChildAnswer.answer_setting(current_user, @answer, key, value)
           end
-        end
 
-        if is_error
-          flash[:error] = "振り返り実行に失敗しました"
-          set_rules_and_redirect and return
-        else
           Answer.score_create(@answer)
-        end
+          User.levelup(@answer)
 
-        User.levelup(@answer)
+          levelsetting = LevelSetting.find_by(level: @user.level + 1)
 
-        levelsetting = LevelSetting.find_by(level: @user.level + 1)
+          if levelsetting.thresold <= @user.experience_point
+            @user.level += 1
+            @user.update(level: @user.level)
+            flash[:notice] = "振り返りを実施しました。MONK Lv.#{@user.level}に上がった！"
+          else
+            flash[:notice] = "振り返りを実施しました"
+          end
 
-        if levelsetting.thresold <= @user.experience_point
-          @user.level += 1
-          @user.update(level: @user.level)
-          flash[:notice] = "振り返りを実施しました。MONK Lv.#{@user.level}に上がった！"
+          redirect_to answer_path(@answer)
         else
-          flash[:notice] = "振り返りを実施しました"
+          flash[:error] = "振り返り実行に失敗しました"
+          render new_answer_path
         end
-        redirect_to answer_path(@answer) and return
       end
     else
-      is_error = true
-    end
-
-    if is_error
       flash[:error] = "振り返り実行に失敗しました"
-      set_rules_and_redirect and return
+      render new_answer_path
     end
   end
 
@@ -94,14 +89,8 @@ class AnswersController < ApplicationController
     days.each do |d|
       if d.strftime("%Y年 %m月 %d日") == today
         flash[:alert] = "振り返りは一日一回までです！"
-        set_rules_and_redirect
-        return
+        raise "Duplicate answer found" # 例外を発生させる
       end
     end
-  end
-
-  def set_rules_and_redirect
-    @rules = current_user.rules ||= ""
-    redirect_back(fallback_location: new_answer_path)
   end
 end
