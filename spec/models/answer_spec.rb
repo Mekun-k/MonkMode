@@ -68,7 +68,7 @@ describe User do
         user = build(:user)
         answer = FactoryBot.create(:answer, user: user)
         comment = FactoryBot.create(:comment, user: user, answer: answer)
-        expect(answer.commented?(user)).to be true
+        expect(answer.commented?(answer)).to be true
       end
     end
 

@@ -1,14 +1,13 @@
-<%= render "devise/shared/error_messages", resource: resource %>
-<div class="bg-light p-1">
+<div class="card-bg text-main text-center p-3 mt-5">
   <h4 class="my-2">パスワード再設定</h4>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
     <div class="field my-3">
-      <%= f.label :email, class: "font-weight-bold" %><br/>
-      <%= f.email_field :email, autofocus: true, style: 'width: 55%;', autocomplete: "email" %>
+      <%= f.label :email %><br/>
+      <%= f.email_field :email, autofocus: true, style: 'width: 55%;', class: "custom-input equal-width mb-3", autocomplete: "email" %>
     </div>
-    <div class="actions mb-3">
-      <%= f.submit "パスワード再設定のメールを送信する" %>
+    <div class="actions my-3 text-center">
+      <%= f.submit "送信", class: "btn-lg bg-btn text-decoration-none" %>
     </div>
   <% end %>
 </div>

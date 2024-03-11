@@ -1,23 +1,20 @@
-<div class="bg-light p-1">
-  <h4 class="my-2">ログイン</h4>
+<div class="text-main card-bg p-3 ">
+  <p class="mb-3 cp_rule_1">ログイン</p>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field mb-3">
-        <%= f.label :email, class: "font-weight-bold" %><br />
-        <%= f.email_field :email, class: "equal-width", autofocus: true, autocomplete: "email" %>
+        <%= f.label :email %><br />
+        <%= f.email_field :email, class: "equal-width custom-input", autofocus: true, autocomplete: "email" %>
       </div>
 
       <div class="field">
-        <%= f.label :password, class: "font-weight-bold" %><br />
-        <%= f.password_field :password, class: "equal-width", autocomplete: "current-password" %>
+        <%= f.label :password %><br />
+        <%= f.password_field :password, class: "equal-width custom-input", autocomplete: "current-password" %>
       </div>
 
-      <div class="actions mt-3">
-        <%= f.submit "ログイン", class: "equal-width" %>
+      <div class="actions mt-3 text-center">
+        <%= f.submit "ログイン", class: "btn-lg bg-btn text-decoration-none" %>
       </div>
 
     <% end %>
-    <br/>
-    <div class="equal-color">
-      <%= render "devise/shared/links" %>
-    </div>
+    <%= render "devise/shared/links" %>
 </div>

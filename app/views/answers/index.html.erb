@@ -1,4 +1,7 @@
-<%= render partial: '/shared/answer_form', locals: { answers: @answers } %>
+<div class="col-8 mx-auto">
+  <%= render partial: '/shared/answer_form', locals: { answers: @answers } %>
+</div>
+
 
 <div class="mb-5">
   <%= paginate @answers %>

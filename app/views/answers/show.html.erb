@@ -1,76 +1,106 @@
-<div class="bg-light p-1">
-  <div class="border-bottom my-3">
-    <div class="d-flex flex-wrap mb-3">
-      <span class="mr-3"><%= @answer.created_at.strftime('%Y/%m/%d') %></span>
-      <span class="mr-3"><%= @answer.user.name %></span>
-      <span class="mr-3"><%= "経験値#{@answer.score}Exp" %></span>
-      <span class="mr-3"><%= "達成率#{Answer.success_result(@answer)}/15" %></span>
-
-      <div id="favorite_btn_<%= @answer.id %>" class="mr-3">
-        <%= render "favorites/btn", answer: @answer %>
-      </div>
-
-      <div class="mr-3">
-        <% if @answer.commented?(@answer.user) %>
-          <i class="fa-regular fa-comment"></i> <%= @answer.comments.count %>
+<div class="text-main p-1">
+  <div class="my-3 card-bg p-3 col-10">
+    <div class="d-flex flex-wrap mb-3 cp_rule_2">
+      <div class="mx-auto">
+        <span class="mr-3"><%= @answer.created_at.strftime('%Y/%m/%d') %></span>
+        <% if @answer.user.avatar.attached? %>
+          <%= image_tag(@answer.user.avatar, class: 'profile-icon-default') %>
         <% else %>
-          <i class="fa-regular fa-comment"></i>
+          <%= image_tag("default_user.png", class: 'profile-icon-default') %>
         <% end %>
+        <span class="mr-3"><%= @answer.user.name %></span>
+        <span class="mr-3"><%= "経験値#{@answer.score}Exp" %></span>
+        <span class="mr-3"><%= "達成率#{Answer.success_result(@answer)}/15" %></span>
       </div>
+      <div class="mx-auto">
+        <div class="d-flex align-items-center mt-3">
+          <div id="favorite_btn_<%= @answer.id %>">
+            <%= render "favorites/btn", answer: @answer %>
+          </div>
 
-      <div class ="title mr-3">
-        <%= link_to("https://twitter.com/intent/tweet?url=#{@twitter_share_url}%0a%0a&text=#{@encodedText}%0a&hashtags=#{@hashtags}%0a",
-                      target: '_blank',
-                      data: { toggle: "tooltip", placement: "bottom" },
-                      title: "Xでシェア"
-                    ) do %>
-          <i class="fa-brands fa-square-x-twitter fa-lg"></i>
-        <% end %>
+          <div class="mx-5">
+            <% if @answer.commented?(@answer) %>
+              <i class="fa-solid fa-comment" style="color: #7f5af0;"></i>
+              <span class="text-main">
+                <%= @answer.comments.count %>
+              </span>
+            <% else %>
+              <i class="fa-solid fa-comment" style="color: #7f5af0;"></i>
+              <span class="text-main">
+                0
+              </span>
+            <% end %>
+          </div>
+
+          <div class ="title">
+            <%= link_to("https://twitter.com/intent/tweet?url=#{@twitter_share_url}%0a%0a&text=#{@encodedText}%0a&hashtags=#{@hashtags}%0a",
+                          target: '_blank',
+                          data: { toggle: "tooltip", placement: "bottom" },
+                          title: "Xでシェア"
+                        ) do %>
+              <i class="fa-brands fa-square-x-twitter fa-lg" style="color: #000000;"></i>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="border-bottom my-3">
-    <div class="row mb-2">
-      <div class="col-7 ml-5">
-        <h4 class="my-3">ルール一覧</h4>
-      </div>
-      <div class="col-2 offset-1">
-        <h4 class="my-3 text-left">回答</h4>
-      </div>
-    </div>
-
+  <div class="my-3 col-10">
     <% @child_answers.each_with_index do |child_answers, i| %>
       <% if child_answers.rule.rule_title == "" && child_answers.rule.rule_type_id == true %>
-        <div class="row mb-2">
-          <div class="col-8 ml-5">
-            <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_content %>
-          </div>
-          <div class="col-1 text-center">
-            <%= child_answers.content ? '◯' : '×' %>
+        <div class="row mb-2 card-bg p-3">
+          <div class="col-8 ml-3">
+            <div class="d-flex align-items-center">
+              <span class="cp_rule_1">
+                <% if child_answers.content %>
+                  <i class="fa-regular fa-circle mr-3" style="color: #1976d2;"></i>
+                <% else %>
+                  <i class="fa-solid fa-xmark fa-lg mr-3" style="color: #dc3545;"></i>
+                <% end %>
+              </span>
+              <span class="circle_number mr-2 px-2"><%= "#{i+1}" %></span>
+              <span class="cp_rule_2"><%= child_answers.rule.rule_content %></span>
+            </div>
           </div>
         </div>
       <% elsif child_answers.rule.rule_type_id == true %>
-        <div class="row mb-2">
-          <div class="col-8 ml-5">
-            <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_content + child_answers.rule.rule_title%>
-          </div>
-          <div class="col-1 text-center">
-            <%= child_answers.content ? '◯' : '×' %>
+        <div class="row mb-2 card-bg p-3">
+          <div class="col-12 ml-3">
+            <div class="d-flex align-items-center">
+              <span class="cp_rule_1">
+                <% if child_answers.content %>
+                  <i class="fa-regular fa-circle mr-3" style="color: #1976d2;"></i>
+                <% else %>
+                  <i class="fa-solid fa-xmark fa-lg mr-3" style="color: #dc3545;"></i>
+                <% end %>
+              </span>
+              <span class="circle_number mr-2 px-2"><%= "#{i+1}" %></span>
+              <span class="cp_rule_2"><%= child_answers.rule.rule_content + child_answers.rule.rule_title %></span>
+            </div>
           </div>
         </div>
       <% else %>
-        <div class="row mb-2">
-          <div class="col-8 ml-5">
-            <span class="text-q"><%= "Q#{i+1}. " %></span><%= child_answers.rule.rule_title %>
-          </div>
-          <div class="col-1 text-center">
-            <%= child_answers.content ? '◯' : '×' %>
+        <div class="row mb-2 card-bg p-3">
+          <div class="col-12 ml-3">
+            <div class="d-flex align-items-center">
+              <span class="cp_rule_1">
+                <% if child_answers.content %>
+                  <i class="fa-regular fa-circle mr-3" style="color: #1976d2;"></i>
+                <% else %>
+                  <i class="fa-solid fa-xmark fa-lg mr-3" style="color: #dc3545;"></i>
+                <% end %>
+              </span>
+              <span class="circle_number mr-2 pr-3"><%= "#{i+1}" %></span>
+              <span class="cp_rule_2"><%= child_answers.rule.rule_title %></span>
+            </div>
           </div>
         </div>
       <% end %>
     <% end %>
   </div>
-  <%= render 'comments/form', { answer: @answer, comment: @comment } %>
-  <%= render 'comments/comments', { comments: @comments } %>
+  <div class="my-3 col-10 mb-5">
+    <%= render 'comments/form', { answer: @answer, comment: @comment } %>
+    <%= render 'comments/comments', { comments: @comments } %>
+  </div>
 </div>

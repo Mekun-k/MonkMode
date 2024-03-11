@@ -1,28 +1,37 @@
-<%- if controller_name != 'sessions' %>
-  <%= link_to "ログイン", new_session_path(resource_name), class: "equal-width " %><br />
-<% end %>
 
-<%- if devise_mapping.omniauthable? %>
-  <%= button_to "Googleでログイン", omniauth_authorize_path(:user, :google_oauth2), class: "equal-width" , data: { turbo: false } %><br />
-  <%= button_to "Twitterでログイン", omniauth_authorize_path(:user, :twitter), class: "equal-width", data: { turbo: false } %><br />
-<% end %>
-
-<div class="justify-content-center">
-    <div class="col-12 text-center my-2">
-      <% if controller_name != 'users/sessions' %>
-        <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
-      <% end %>
-    </div>
-
-    <div class="col-12 text-center my-2">
-      <% if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <%= link_to "アカウント作成", new_registration_path(resource_name) %>
-      <% end %>
-    </div>
-
-    <div class="col-12 text-center my-2">
-      <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-        <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name) %>
-      <% end %>
-    </div>
+  <div class="text-center mb-3">
+    <% if controller_name != 'sessions' %>
+      <%= link_to "ログイン", new_session_path(resource_name), class: "btn-lg bg-btn text-decoration-none" %>
+    <% end %>
   </div>
+
+  <div class="text-center">
+    <p class="head-border">OR LOG IN WITH</p>
+  </div>
+
+
+  <div class="text-center mb-3">
+    <% if controller_name != 'users/sessions' %>
+      <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "btn-lg bg-btn text-decoration-none" %>
+    <% end %>
+  </div>
+
+  <div class="row mb-3 offset-2">
+
+    <% if devise_mapping.omniauthable? %>
+    <div class="ml-4 mr-3">
+        <%= button_to "Googleでログイン", omniauth_authorize_path(:user, :google_oauth2), class: "btn-lg bg-btn text-decoration-none" %>
+    </div>
+
+    <div class="text-center ml-4">
+        <%= button_to "Twitterでログイン", omniauth_authorize_path(:user, :twitter), class: "btn-lg bg-btn text-decoration-none" %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="text-center mb-3">
+    <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "パスワードを忘れた方はこちら", new_password_path(resource_name), class: "btn-lg bg-btn text-decoration-none" %>
+    <% end %>
+  </div>
+

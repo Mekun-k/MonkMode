@@ -1,45 +1,47 @@
-<div class="row">
-  <div class="col-6">
-    <%= render partial: '/shared/answer_form', locals: { answers: @answers } %>
-  </div>
+<div class="text-main">
+  <div class="row">
+    <div class="col-7">
+      <%= render partial: '/shared/answer_form', locals: { answers: @answers } %>
+    </div>
 
-  <div class="col-3 offset-3 text-center">
-    <div class="bg-light p-4">
-      <% if @user.avatar.attached? %>
-        <p>
-          <%= image_tag(@user.avatar, class: 'profile-icon pt-3 mt-3') %>
-        </p>
-      <% else %>
-        <p>
-          <%= link_to image_tag("default_user.png", class: 'profile-icon'), "#{profile_path(@user)}" %>
-        </p>
-      <% end %>
-      <div class="mt-2">
-        <p><%= @user.name %></p>
-        <p class="app-logo"><span class="small">MONK Lv. </span><%= @user.level %></p>
-        <div class="font-sm">
-          <div class="d-flex justify-content-center text-center">
-            <%= link_to user_followings_path(@user) do %>
-              <p class="mr-3"><%= @user.followings.count %><span class="small text-muted">フォロー中</span></p>
-            <% end %>
-            <%= link_to user_followers_path(@user) do %>
-              <p><%= "#{@user.followers.count}" %><span class="small text-muted">フォロワー</span></p>
-            <% end %>
+    <div class="col-4 offset-1 text-center">
+      <div class="card-bg p-4">
+        <% if @user.avatar.attached? %>
+          <p>
+            <%= image_tag(@user.avatar, class: 'profile-icon mt-3') %>
+          </p>
+        <% else %>
+          <p>
+            <%= link_to image_tag("default_user.png", class: 'profile-icon'), "#{profile_path(@user)}" %>
+          </p>
+        <% end %>
+        <div class="mt-2">
+          <p><%= @user.name %></p>
+          <p class="app-name"><span class="small">MONK Lv. </span><%= @user.level %></p>
+          <div class="font-sm">
+            <div class="d-flex justify-content-center text-center">
+              <%= link_to user_followings_path(@user) do %>
+                <p class="mr-3 text-main"><%= @user.followings.count %><span class="small text-muted">フォロー中</span></p>
+              <% end %>
+              <%= link_to user_followers_path(@user) do %>
+                <p class="text-main"><%= "#{@user.followers.count}" %><span class="small text-muted">フォロワー</span></p>
+              <% end %>
+            </div>
           </div>
+          <p><%= "#{@user.self_introduction}" %></p>
+          <%= render partial: '/relationships/follow_btn', locals: { user: @user } %>
         </div>
-        <p><%= "#{@user.self_introduction}" %></p>
-        <%= render partial: '/relationships/follow_btn', locals: { user: @user } %>
-      </div>
 
-    </div>
-    <div class="bg-light mt-3 p-2">
-      <div class="d-flex justify-content-center text-center mt-3 py-1 px-1">
-        <%= render "shared/heatmap", user: @user %>
+      </div>
+      <div class="card-bg mt-3 p-2">
+        <div class="d-flex justify-content-center text-center mt-3 py-1 px-1">
+          <%= render "shared/heatmap", user: @user %>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="mb-5">
-  <%= paginate @answers %>
+  <div class="mb-5">
+    <%= paginate @answers %>
+  </div>
 </div>
