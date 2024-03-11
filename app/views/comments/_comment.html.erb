@@ -11,8 +11,8 @@
     <% end %>
   </td>
   <td>
-    <%= link_to comment.user.name, profile_path(comment.user), class: "small equal-color" %>
-    <div id="js-comment-<%= comment.id %>">
+    <%= link_to comment.user.name, profile_path(comment.user), class: "small text-main" %>
+    <div id="js-comment-<%= comment.id %>" class="mt-2 text-main cp_rule_2">
       <%= render "comments/js_comment", comment: comment %>
     </div>
   </td>
@@ -22,7 +22,7 @@
       <ul class="list-inline justify-content-center" style="float: right;">
         <li class="list-inline-item">
           <span data-comment-id=<%= comment.id %> class="js-edit-comment-button">
-            <i class="fas fa-edit text-primary"></i>
+            <i class="fas fa-edit fa-lg" style="color: #7f5af0;"></i>
           </span>
         </li>
         <li class="list-inline-item">
@@ -30,7 +30,7 @@
                       method: :delete,
                       remote: true do
           %>
-            <i class="fa-solid fa-trash"></i>
+            <i class="fa-solid fa-trash fa-lg" style="color: #7f5af0;"></i>
           <% end %>
         </li>
         <li>
@@ -38,5 +38,7 @@
         </li>
       </ul>
     </td>
+  <% else %>
+    <td></td>
   <% end %>
 </tr>

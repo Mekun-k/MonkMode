@@ -50,8 +50,8 @@ class Answer < ApplicationRecord
     notification.save if notification.valid?
   end
 
-  def commented?(user)
-    comments.where(user_id: user.id).exists?
+  def commented?(answer)
+    comments.where(answer_id: answer.id).exists?
   end
 
   def favorited?(user)

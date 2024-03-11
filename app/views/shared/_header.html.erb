@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg text-main" style="background-color: #242629;">
   <div class="container-fluid">
     <% if user_signed_in? %>
       <%= link_to 'MONK MODE', profile_path(current_user), class: 'app-logo mr-5' %>
@@ -28,7 +28,7 @@
                   <%= image_tag("default_user.png", class: 'icon_mini') %>
                 <% end %>
               <% end %>
-              <div class="dropdown-menu dropdown-menu-right dropdown-menu-up" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu dropdown-menu-right dropdown-menu-up dropdown-custom" aria-labelledby="navbarDropdown">
                 <%= link_to 'アカウント', profile_path(current_user), class: 'dropdown-item' %>
                 <div class="dropdown-divider"></div>
                 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>

@@ -1,29 +1,31 @@
-<div class="bg-light p-1">
-  <h4 class="my-2">ユーザー登録</h4>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="text-main card-bg p-3 ">
 
-    <div class="field mb-3">
-      <%= f.label :name, class: "font-weight-bold" %><br />
-      <%= f.text_field :name, autofocus: true, class: "equal-width" %>
-    </div>
+    <p class="mb-3 cp_rule_1">ユーザー登録</p>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-    <div class="field mb-3">
-      <%= f.label :email, class: "font-weight-bold" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "equal-width" %>
-    </div>
+      <div class="field mb-3">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, class: "equal-width custom-input" %>
+      </div>
 
-    <div class="field mb-3">
-      <%= f.label :password, class: "font-weight-bold" %><br />
-      <%= f.password_field :password, autocomplete: "new-password", class: "equal-width" %>
-    </div>
+      <div class="field mb-3">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "equal-width custom-input" %>
+      </div>
 
-    <div class="field mb-3">
-      <%= f.label :password_confirmation, class: "font-weight-bold" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "equal-width" %>
-    </div><br />
+      <div class="field mb-3">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "new-password", class: "equal-width custom-input" %>
+      </div>
 
-    <div class="actions mb-3">
-      <%= f.submit "登録", class: "equal-width" %>
-    </div>
-  <% end %>
+      <div class="field mb-3">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "equal-width custom-input" %>
+      </div><br />
+
+      <div class="actions mb-3 text-center">
+        <%= f.submit "登録", class: "btn-lg bg-btn text-decoration-none" %>
+      </div>
+    <% end %>
+
 </div>

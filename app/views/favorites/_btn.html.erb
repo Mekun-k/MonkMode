@@ -1,11 +1,15 @@
 <% if answer.favorited?(current_user) %>
   <%= link_to answer_favorites_path(answer), method: :delete, remote: true do %>
     <i class="fa-solid fa-thumbs-up fa-lg" aria-hidden="true" style="color: #f91880;"></i>
-     <%= answer.favorites.count %>
+    <span class="text-main">
+      <%= answer.favorites.count %>
+    </span>
   <% end %>
 <% else %>
   <%= link_to answer_favorites_path(answer), method: :post, remote: true do %>
     <i class="fa-regular fa-thumbs-up fa-lg" aria-hidden="true" style="color: #f91880;"></i>
-      <%= answer.favorites.count %>
+      <span class="text-main">
+        <%= answer.favorites.count %>
+      </span>
   <% end %>
 <% end %>

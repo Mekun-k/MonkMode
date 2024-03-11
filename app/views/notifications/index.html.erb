@@ -1,11 +1,12 @@
-<div class="bg-light p-1">
-  <div class="border-bottom mb-3">
-    <h4 class="mb-3">通知一覧</h4>
-  </div>
+<div class="card-bg text-main text-center p-3">
+
   <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
   <% if notifications.exists? %>
+    <div class="border-bottom mb-3">
+      <p class="mb-3 cp_rule_1">通知一覧</p>
+    </div>
     <%= render notifications %>
   <% else %>
-    <p>通知はありません</p>
+    <p class="mt-3 cp_rule_2">通知はありません</p>
   <% end %>
 </div>

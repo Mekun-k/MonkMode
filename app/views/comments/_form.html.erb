@@ -1,9 +1,11 @@
 <div class="row mb-3">
-  <div class="col-lg-8 offset-2">
+  <div class="col-12">
     <%= form_with model: comment, url: [answer, comment], id: 'new_comment', local: false do |f| %>
       <%= f.label :body, "コメント", class: "font-weight-bold" %>
-      <%= f.text_area :body, class: 'form-control mb-3', id: 'js-new-comment-body', row: 4 %>
-      <%= f.submit ("送信"), class: 'equal-width mb-3' %>
+      <%= f.text_area :body, class: 'custom-textarea mb-3', id: 'js-new-comment-body', row: 4 %>
+      <div class="text-center">
+        <%= f.submit ("送信"), class: 'btn-lg bg-btn text-decoration-none mb-3' %>
+      </div>
     <% end %>
   </div>
 </div>

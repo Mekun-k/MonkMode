@@ -41,6 +41,7 @@
 .cal-heatmap-container .graph-label
 {
 	font-size: 1rem;
+  color: #fffffe;
 }
 
 .cal-heatmap-container .graph, .cal-heatmap-container .graph-legend rect {
@@ -54,7 +55,7 @@
 
 .cal-heatmap-container .graph-subdomain-group rect:hover
 {
-	stroke: #000;
+	stroke: #fffffe;
 	stroke-width: 1px
 }
 
@@ -148,7 +149,7 @@ Remove comment to apply this style to date with value equal to 0
 .ch-tooltip {
 	padding: 10px;
 	background: #222;
-	color: #bbb;
+	color: #fffffe;
 	font-size: 12px;
 	line-height: 1.4;
 	width: 140px;
@@ -186,7 +187,7 @@ Remove comment to apply this style to date with value equal to 0
   position: absolute;
   padding-left: 1.3rem;
   padding-top: 1rem;
-  color: #f91880;
+  color: #60CAAD;
 }
 
 .icon_mini {
@@ -215,24 +216,18 @@ Remove comment to apply this style to date with value equal to 0
 	font-size: 0.7rem;
 }
 
-.equal-width {
-  width: 100%; /* もしくは具体的な幅を指定 */
-  box-sizing: border-box; /* 幅にpaddingやborderも含める */
-}
-
 .equal-color {
   text-decoration: none;
-  color: #212529;
+  color: #fffffe;
 }
 
 .equal-color:hover {
-  color: rgba(0, 0, 0, 0.5) !important;
-  text-decoration: none !important;
+  color: #fffffe !important;
 }
 
 .equal-heading-size {
 	font-size: 2rem;
-  color: #212529;
+  color: #fffffe;
 }
 
 .channel-menu {
@@ -247,7 +242,7 @@ Remove comment to apply this style to date with value equal to 0
 .channel-menu_name {
   display: inline-block;
   padding: 0 0.5rem 0 1.5rem;
-  color: #555459;
+  color: #fffffe;
   font-size: 1.4rem;
   font-weight: 900;
   line-height: 53px;
@@ -277,8 +272,8 @@ Remove comment to apply this style to date with value equal to 0
   height: 100%;
   width: 220px;
   float: left;
-  color: #ab9ba9;
-  background-color: #1b2c36 !important;
+  color: #fffffe;
+  background-color: #212529 !important;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 10;
@@ -302,7 +297,7 @@ Remove comment to apply this style to date with value equal to 0
   margin: 0 1rem 0.1rem;
   text-transform: uppercase;
   font-weight: 700;
-  color: #ffffff;
+  color: #fffffe;
   width: 165px;
   position: relative;
 }
@@ -311,41 +306,50 @@ Remove comment to apply this style to date with value equal to 0
   padding: 0;
   list-style-type: none;
   text-align: left;
-  color: #ab9ba9;
+  color: #fffffe;
 }
 
 .channel {
-  height: 24px;
-  line-height: 24px;
+  height: 46px;
+  line-height: 46px;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   padding-right: 17px;
-  color: #ffffff;
+  color: #fffffe;
   padding-left: 1rem;
   a {
-    color: #ddd;
+    color: #fffffe;
     text-decoration: none;
     width: 100%;
     display: inline-block;
   }
   a:hover {
-    color: #eee;
+    color: #fffffe;
+    text-decoration: none;
   }
 }
 
 .channel.active {
-  background: #5013B5;
+  background: #60CAAD;
 }
 
 .app-logo {
-	color: #5013B5;
+	color: #7f5af0;
 	font-family: "Playfair Display";
 	font-weight: bold;
 }
 
+.app-logo:hover {
+  color: rgba(127, 90, 240, 0.8);
+  text-decoration: none;
+}
+
 .app-name {
-	color: #4501B5;
-	font-family: 'Anton', sans-serif;
+	color: #7f5af0;
+}
+
+.app-name:hover {
+  text-decoration: none;
 }
 
 .text-q {
@@ -376,25 +380,13 @@ footer {
   bottom: 0;
   width: 100%;
   height: 50px;
-  background: #326788 !important;
+  background: #242629 !important;
+  border-top: 3px solid #16161a;
 }
 
 header {
-  background: #326788 !important;
-}
-
-.pagination>li>a {
-  border: none;
-  color: #696969;
-}
-
-.pagination>.active>a {
-  position: static;
-  background: #93c9ff;
-}
-
-.pagination {
-  justify-content: center;
+  background: #242629 !important;
+  border-bottom: 3px solid #16161a;
 }
 
 .pages-index {
@@ -423,4 +415,308 @@ header {
 .z-index-10 {
   z-index: 10;
   position: relative;
+}
+
+ul.cp_list_monk {
+	padding: 0.5em;
+	list-style-type: none;
+}
+ul.cp_list_monk li {
+	position: relative;
+	padding: 0.5em 1em 0.5em 2.3em;
+	margin-bottom:5px;
+	border-bottom: 1px solid #60CAAD;
+}
+ul.cp_list_monk li:after,
+ul.cp_list_monk li:before{
+	content:'';
+	position: absolute;
+	border-radius: 50%;
+}
+ul.cp_list_monk li:before {
+	top: 50%;
+	left: 0.2em;
+	width: 17px;
+	height: 17px;
+	background: #60CAAD;
+	transform: translateY(-50%);
+}
+
+
+ul.cp_list_bad {
+	padding: 0.5em;
+	list-style-type: none;
+}
+ul.cp_list_bad li {
+	position: relative;
+	padding: 0.5em 1em 0.5em 2.3em;
+	margin-bottom:5px;
+	border-bottom: 1px solid rgba(220, 53, 69, 1);
+}
+ul.cp_list_bad li:after,
+ul.cp_list_bad li:before{
+	content:'';
+	position: absolute;
+	border-radius: 50%;
+}
+ul.cp_list_bad li:before {
+	top: 50%;
+	left: 0.2em;
+	width: 17px;
+	height: 17px;
+	background: rgba(220, 53, 69, 1);
+	transform: translateY(-50%);
+}
+
+ul.cp_list_good {
+	padding: 0.5em;
+	list-style-type: none;
+}
+ul.cp_list_good li {
+	position: relative;
+	padding: 0.5em 1em 0.5em 2.3em;
+	margin-bottom:5px;
+	border-bottom: 1px solid rgba(25,118,210, 1);
+}
+ul.cp_list_good li:after,
+ul.cp_list_good li:before{
+	content:'';
+	position: absolute;
+	border-radius: 50%;
+}
+ul.cp_list_good li:before {
+	top: 50%;
+	left: 0.2em;
+	width: 17px;
+	height: 17px;
+	background: rgba(25,118,210, 1);
+	transform: translateY(-50%);
+}
+
+.cp_rule_1 {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.cp_rule_2 {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+:hover {
+  text-decoration: none !important;
+}
+
+
+
+ol {
+  counter-reset:number; /*数字をリセット*/
+  list-style-type: none!important; /*数字を一旦消す*/
+  padding:0.5em;
+}
+ol li {
+  position: relative;
+  line-height: 1.5em;
+  padding: 0.5em 0.5em 0.5em 30px;
+	margin-bottom:5px;
+	border-bottom: 1px solid #60CAAD;
+}
+
+ol li:before{
+  /* 以下数字をつける */
+  position: absolute;
+  counter-increment: number;
+  content: counter(number);
+  /*以下数字のデザイン変える*/
+  display:inline-block;
+  background: #60CAAD;
+  color: fffffe;
+  font-family: 'Avenir','Arial Black','Arial',sans-serif;
+  font-weight:bold;
+  font-size: 15px;
+  border-radius: 50%;
+  left: 0;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  /*以下 上下中央寄せのため*/
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+
+.text-main {
+ color: #fffffe !important;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+.text-secondary{
+  color: #72757e;
+}
+
+.text-pr {
+  color: #7f5af0;
+}
+
+.card-bg {
+  background-color: #242629;
+  border-color: #010101;
+}
+
+.circle_number {
+  width: 30px;
+  height: 25px;
+
+  line-height: 25px;
+  border-radius: 50%;
+  background-color: #60CAAD;
+
+  color: white;
+  font-size: 15px;
+  font-family: 'Avenir','Arial Black','Arial',sans-serif;
+  font-weight: bold;
+  padding-left: 0.5em;
+
+}
+
+.text-decoration {
+  text-decoration:5px;
+	border-bottom: 1px solid #60CAAD;
+}
+
+.bg-btn {
+  background-color: #7f5af0;
+  color: #fffffe;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.bg-btn:hover {
+  background-color: rgba(127, 90, 240, 0.8);
+  cursor: pointer;
+}
+
+.custom-input {
+  background-color: #16161a;
+  color: #fffffe;
+  border: 2px solid #60CAAD;
+}
+
+.equal-width {
+  height: 48px;
+  width: 100%; /* もしくは具体的な幅を指定 */
+}
+
+input:focus {
+  outline: none;
+}
+
+.custom-textarea {
+  background-color: #16161a;
+  color: #fffffe;
+  border: 2px solid #60CAAD;
+  height: 144px;
+  width: 100%;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.text-main:hover {
+  text-decoration: none;
+}
+
+.my-radio-bad {
+  accent-color: rgba(220, 53, 69, 1);
+  inline-size: 1.3rem;
+  block-size: 1.3rem;
+  top: 50%;
+}
+
+.my-radio-good {
+  accent-color: rgba(25,118,210, 1);
+  inline-size: 1.3rem;
+  block-size: 1.3rem;
+  top: 50%;
+}
+
+.pagination>li>a {
+  color: #fffffe;
+  background-color: #7f5af0;
+}
+
+.pagination>.active>a {
+  position: static;
+  background: #60CAAD !important;
+  border-color: #fffffe !important;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+  background: #60CAAD;
+  color: #fffffe;
+}
+
+.head-border {
+    display: flex;
+    align-items: center;
+}
+.head-border:before,
+.head-border:after {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    background-color: #fffffe;
+}
+
+.head-border:before {
+    margin-right: 1rem;
+}
+
+.head-border:after {
+    margin-left: 1rem;
+}
+
+.small.text-main:hover {
+  color: #fffffe;
+}
+
+
+table td {
+  border-top: 1px solid #fffffe !important;
+  border-bottom: 1px solid #fffffe !important;
+}
+
+.dropdown-custom {
+  color: #fffffe !important;
+  background-color: #242629 !important;
+  border: 2px solid #16161a !important;
+}
+
+.dropdown-item {
+  color: #fffffe !important;
+}
+
+.dropdown-item:hover {
+  color: #fffffe !important;
+  background-color: #242629 !important;
+}
+
+.image_form{
+  display: none;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+  color: #fffffe !important;
 }

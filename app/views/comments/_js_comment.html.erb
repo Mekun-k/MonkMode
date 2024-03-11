@@ -3,11 +3,11 @@
 
 <%= form_with model: comment, local: false do |f| %>
   <%= f.text_area :body, id: "js-textarea-comment-edit-#{comment.id}",
-                            class: "form-control comment-post-error",
+                            class: "custom-textarea comment-post-error",
                             style: "display:none;" %>
 
-  <div id="js-comment-button-<%= comment.id %>" style="display: none;" class="equal-width">
-    <button data-cancel-id=<%= comment.id %> type="button" class="comment-button comment-cancel-button">キャンセル</button>
-    <%= f.submit "更新", class: "comment-button comment-update-button" %>
+  <div id="js-comment-button-<%= comment.id %>" style="display: none;" class="equal-width text-center mb-5">
+    <button data-cancel-id=<%= comment.id %> type="button" class="comment-button comment-cancel-button btn-lg bg-btn text-decoration-none">キャンセル</button>
+    <%= f.submit "更新", class: "comment-button comment-update-button btn-lg bg-btn text-decoration-none" %>
   </div>
 <% end %>
