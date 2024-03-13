@@ -50,6 +50,11 @@
                 <%= yield %>
               </div>
             </div>
+          <% elsif (controller_name == 'pages' && ['index'].include?(action_name)) %>
+            <% if flash.any? %>
+                <%= render 'shared/flash_message' %>
+            <% end %>
+            <%= yield %>
           <% else %>
             <div class="row">
               <div class="col-8 offset-2 mt-3">
@@ -70,9 +75,7 @@
             </div>
           <% elsif (controller_name == 'pages' && ['index'].include?(action_name)) %>
             <% if flash.any? %>
-              <div class="z-index-10">
                 <%= render 'shared/flash_message' %>
-              </div>
             <% end %>
             <%= yield %>
           <% else %>
