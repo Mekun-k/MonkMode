@@ -2,8 +2,11 @@
   <div class="diagnose-wrap">
     <div class="inner-block">
       <div class="btn-wrap card-bg text-center pt-5">
-        <div class="my-3 cp_rule_1">質問に回答することで自分の生活を振り返ることができ、</div><br>
-        <div class=" cp_rule_1">設定しているルールをどれだけ遵守できているか確認できます。</div><br>
+        <div class="my-2 cp_rule_1"><%= link_to "解説ページ", rules_path, class: "app-name" %>にてMONKMODEの解説をしているのでご参照下さい。</div><br>
+        <div class="cp_rule_1">ルールは<%= link_to "設定ページ", rules_path, class: "app-name" %>から設定可能です。</div><br>
+        <div class="my-2 cp_rule_1">質問に回答することで自分の生活を振り返ることができ、</div><br>
+        <div class="my-2 cp_rule_1">設定しているルールをどれだけ遵守できているか確認できます。</div><br>
+        <div>※振り返りは一日一回までとなります。</div><br>
         <%= button_tag "振り返り実施", class: "tool-btn start-btn btn-lg bg-btn text-decoration-none mb-5", type: "button",  data: {box_link: "q#{Answer::MIN_NUMBER}"} %>
       </div>
       <div class="box-wrap  p-5">

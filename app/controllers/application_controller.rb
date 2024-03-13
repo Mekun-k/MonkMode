@@ -16,7 +16,7 @@ add_flash_types :success, :info, :warning, :danger
 
   #ログイン後の遷移先
   def after_sign_in_path_for(resource_or_scope)
-    profile_path(current_user)
+    new_answer_path
   end
 
   #ログアウト後の遷移先

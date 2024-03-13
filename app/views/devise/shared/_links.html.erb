@@ -10,24 +10,23 @@
   </div>
 
 
-  <div class="text-center mb-3">
+  <div class="text-center mb-4">
     <% if controller_name != 'users/sessions' %>
       <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "btn-lg bg-btn text-decoration-none" %>
     <% end %>
   </div>
 
-  <div class="row mb-3 offset-2">
 
-    <% if devise_mapping.omniauthable? %>
-    <div class="ml-4 mr-3">
-        <%= button_to "Googleでログイン", omniauth_authorize_path(:user, :google_oauth2), class: "btn-lg bg-btn text-decoration-none" %>
-    </div>
-
-    <div class="text-center ml-4">
-        <%= button_to "Twitterでログイン", omniauth_authorize_path(:user, :twitter), class: "btn-lg bg-btn text-decoration-none" %>
-    </div>
-    <% end %>
+  <% if devise_mapping.omniauthable? %>
+  <div class="text-center mt-3 mb-3">
+      <%= button_to "Googleでログイン", omniauth_authorize_path(:user, :google_oauth2), class: "btn-lg bg-btn text-decoration-none" %>
   </div>
+
+  <div class="text-center mb-3">
+      <%= button_to "Twitterでログイン", omniauth_authorize_path(:user, :twitter), class: "btn-lg bg-btn text-decoration-none" %>
+  </div>
+  <% end %>
+
 
   <div class="text-center mb-3">
     <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>

@@ -389,25 +389,6 @@ header {
   border-bottom: 3px solid #16161a;
 }
 
-.pages-index {
-  height: 60vw;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-image: url("/images/top_bg.png");
-  background-position: center;
-  background-size: cover;
-  position:relative;
-}
-
-.pates-text {
-  position:absolute;
-  top: 50%;
-  left: 30%;
-  transform: translate(-50%,-50%);
-}
-
 .overflow-hidden {
   overflow-y: hidden;
 }
@@ -563,8 +544,18 @@ a:hover {
   color: #7f5af0;
 }
 
+.text-hi {
+  color: #60CAAD;
+  font-size: 1.5rem;
+}
+
 .card-bg {
   background-color: #242629;
+  border-color: #010101;
+}
+
+.card-se-bg {
+  background-color: #7f5af0;
   border-color: #010101;
 }
 
@@ -593,7 +584,6 @@ a:hover {
   background-color: #7f5af0;
   color: #fffffe;
   text-decoration: none;
-  font-size: 22px;
 }
 
 .bg-btn:hover {
@@ -719,4 +709,57 @@ table td {
 .text-decoration-none {
   text-decoration: none;
   color: #fffffe !important;
+}
+
+img {
+  width: 100%;
+}
+
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.card {
+  background-color: #16161a !important;
+}
+
+
+
+@media (max-width: 575.98px) {
+
+  .cp_rule_1 {
+    font-size: 0.8rem;
+  }
+  .cp_rule_2 {
+    font-size: 0.7rem;
+  }
+  .text-main {
+    font-size: 0.6rem;
+  }
+  .app-name {
+    font-size: 0.9rem !important;
+  }
+  .bg-btn {
+    font-size: 0.6rem !important;
+  }
+  .text-hi {
+    font-size: 0.8rem;
+  }
+ }
+
+.heading12 {
+	position: relative;
+	font-size: 1rem;
+}
+
+.heading12::before {
+	content: attr(data-number);
+	display: inline-block;
+	margin-right: 10px;
+	color: #60CAAD;
+	font-size: 1rem;
 }

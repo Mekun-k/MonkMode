@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg text-main" style="background-color: #242629;">
+<nav class="navbar navbar-expand text-main" style="background-color: #242629;">
   <div class="container-fluid">
     <% if user_signed_in? %>
       <%= link_to 'MONK MODE', profile_path(current_user), class: 'app-logo mr-5' %>
@@ -10,13 +10,13 @@
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
           <li class="nav-item mr-3">
-            <%= link_to 'ルール', pages_show_path, class: 'nav-link text-light' %>
+            <%= link_to '解説', pages_show_path, class: 'nav-link text-main' %>
           </li>
           <li class="nav-item mr-3">
-            <%= link_to '振り返り', new_answer_path, class: 'nav-link text-light' %>
+            <%= link_to '振り返り', new_answer_path, class: 'nav-link text-main' %>
           </li>
           <li class="nav-item">
-            <%= link_to '掲示板', board_answers_path, class: 'nav-link text-light' %>
+            <%= link_to '掲示板', board_answers_path, class: 'nav-link text-main' %>
           </li>
       </ul>
           <ul class="navbar-nav ml-auto">
@@ -44,10 +44,10 @@
 
         <% else %>
           <li class="nav-item">
-            <%= link_to 'サインアップ', new_user_registration_path, class: 'nav-link text-light' %>
+            <%= link_to 'サインアップ', new_user_registration_path, class: 'nav-link text-main' %>
           </li>
           <li class="nav-item">
-            <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-light' %>
+            <%= link_to 'ログイン', new_user_session_path, class: 'nav-link text-main' %>
           </li>
         <% end %>
       </ul>
