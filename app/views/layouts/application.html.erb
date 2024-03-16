@@ -34,20 +34,26 @@
         <% if user_signed_in? %>
           <% if (controller_name == 'answers' && ['new', 'index', 'show'].include?(action_name)) || (controller_name == 'rules' && ['index'].include?(action_name)) %>
             <div class="row">
-              <div class="col-2">
+              <div class="d-none d-lg-block">
                 <%= render 'shared/answer_sidebar' %>
               </div>
-              <div class="col-8 offset-1 mt-3">
+              <div class="d-lg-none col-md-9 col-sm-12 col-10 mx-auto">
+                <%= render'shared/answer_topbar' %>
+              </div>
+              <div class="col-lg-8 col-md-9 col-sm-12 col-10 offset-lg-1 mx-auto mt-3">
                 <%= render 'shared/flash_message' %>
                 <%= yield %>
               </div>
             </div>
           <% elsif (controller_name == 'profiles' && ['show'].include?(action_name)) || (controller_name == 'registrations' && ['edit'].include?(action_name)) || (controller_name == 'notifications' && ['index'].include?(action_name)) || (controller_name == 'relationships' && ['followings', 'followers'].include?(action_name)) %>
             <div class="row">
-              <div class="col-2">
+              <div class="d-none d-lg-block">
                 <%= render'shared/profile_sidebar' %>
               </div>
-              <div class="col-8 offset-1 mt-3">
+              <div class="d-lg-none col-md-9 col-sm-10 mx-auto">
+                <%= render'shared/profile_topbar' %>
+              </div>
+              <div class="col-lg-8 col-md-9 col-sm-10 mx-auto  mt-3">
                 <%= render 'shared/flash_message' %>
                 <%= yield %>
               </div>

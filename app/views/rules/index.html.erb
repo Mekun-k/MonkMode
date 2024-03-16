@@ -1,38 +1,36 @@
-<div class="text-main">
-  <div class="col-12 p-1 mb-5">
-    <%= form_tag rules_update_path, method: :patch do %>
-      <% @rules.each_with_index do |rule, i| %>
-        <div class="my-3 ml-3">
-          <% if rule.rule_title == "" && rule.rule_type_id == true %>
-            <div class="card-bg p-3">
-              <div class="d-flex align-items-center">
-                <div class="circle_number mr-2 px-2"><%= "#{i+1}" %></div>
-                <span class="text-q"></span><%= text_field_tag "rule[content][#{rule.id}]", rule.rule_content, maxlength: 50, style: 'width: 55%;', placeholder: "自由に設定可能", class: "required custom-input"  %><br>
-              </div>
+<div class="text-main mb-5">
+  <%= form_tag rules_update_path, method: :patch do %>
+    <% @rules.each_with_index do |rule, i| %>
+      <div class="my-3 w-100">
+        <% if rule.rule_title == "" && rule.rule_type_id == true %>
+          <div class="card-bg p-3">
+            <div class="d-flex align-items-center">
+              <div class="circle_number mr-2 px-2"><%= "#{i+1}" %></div>
+              <span class="text-q"></span><%= text_field_tag "rule[content][#{rule.id}]", rule.rule_content, maxlength: 50, style: 'width: 55%;', placeholder: "自由に設定可能", class: "required custom-input"  %><br>
             </div>
-          <% elsif rule.rule_type_id == true %>
-            <div class="card-bg p-3">
-              <div class="d-flex align-items-center">
-                <div class="circle_number mr-2 px-2"><%= "#{i+1}" %></div>
-                <span class="text-q"></span><%= text_field_tag "rule[content][#{rule.id}]", rule.rule_content, maxlength: 3, size: 3, placeholder: "半角数字のみ入力可", pattern: "^[1-9][0-9]*", class: "required custom-input" %>
-                <%= rule.rule_title %><br>
-              </div>
+          </div>
+        <% elsif rule.rule_type_id == true %>
+          <div class="card-bg p-3">
+            <div class="d-flex align-items-center">
+              <div class="circle_number mr-2 px-2"><%= "#{i+1}" %></div>
+              <span class="text-q"></span><%= text_field_tag "rule[content][#{rule.id}]", rule.rule_content, maxlength: 3, size: 3, placeholder: "半角数字のみ入力可", pattern: "^[1-9][0-9]*", class: "required custom-input" %>
+              <%= rule.rule_title %><br>
             </div>
-          <% else %>
+          </div>
+        <% else %>
 
-            <div class="card-bg p-3">
-              <div class="d-flex align-items-center">
-                <div class="circle_number mr-2 pr-2"><%= "#{i+1}" %></div>
-                <span class="text-q"></span><%= rule.rule_title %><br>
-              </div>
+          <div class="card-bg p-3">
+            <div class="d-flex align-items-center">
+              <div class="circle_number mr-2 pr-2"><%= "#{i+1}" %></div>
+              <span class="text-q"></span><%= rule.rule_title %><br>
             </div>
-          <% end %>
-        </div>
-      <% end %>
-
-      <div class="text-center">
-        <%= submit_tag "更新", class: "btn-lg bg-btn text-decoration-none" %>
+          </div>
+        <% end %>
       </div>
     <% end %>
-  </div>
+
+    <div class="text-center">
+      <%= submit_tag "更新", class: "btn-lg bg-btn text-decoration-none" %>
+    </div>
+  <% end %>
 </div>

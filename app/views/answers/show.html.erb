@@ -1,56 +1,59 @@
 <div class="text-main p-1">
-  <div class="my-3 card-bg p-3 col-10">
+  <div class="my-3 card-bg p-3 col-12">
     <div class="d-flex flex-wrap mb-3 cp_rule_2">
       <div class="mx-auto">
-        <span class="mr-3"><%= @answer.created_at.strftime('%Y/%m/%d') %></span>
-        <% if @answer.user.avatar.attached? %>
-          <%= image_tag(@answer.user.avatar, class: 'profile-icon-default') %>
-        <% else %>
-          <%= image_tag("default_user.png", class: 'profile-icon-default') %>
-        <% end %>
-        <span class="mr-3"><%= @answer.user.name %></span>
-        <span class="mr-3"><%= "経験値#{@answer.score}Exp" %></span>
-        <span class="mr-3"><%= "達成率#{Answer.success_result(@answer)}/15" %></span>
-      </div>
-      <div class="mx-auto">
-        <div class="d-flex align-items-center mt-3">
-          <div id="favorite_btn_<%= @answer.id %>">
-            <%= render "favorites/btn", answer: @answer %>
-          </div>
+        <div class="mx-auto">
+          <span class="mr-3"><%= @answer.created_at.strftime('%Y/%m/%d') %></span>
+          <% if @answer.user.avatar.attached? %>
+            <%= image_tag(@answer.user.avatar, class: 'profile-icon-default') %>
+          <% else %>
+            <%= image_tag("default_user.png", class: 'profile-icon-default') %>
+          <% end %>
+          <span class="mr-3"><%= @answer.user.name %></span>
+          <span class="mr-3"><%= "経験値#{@answer.score}Exp" %></span>
+          <span class="mr-3"><%= "達成率#{Answer.success_result(@answer)}/15" %></span>
+        </div>
 
-          <div class="mx-5">
-            <% if @answer.commented?(@answer) %>
-              <i class="fa-solid fa-comment" style="color: #7f5af0;"></i>
-              <span class="text-main">
-                <%= @answer.comments.count %>
-              </span>
-            <% else %>
-              <i class="fa-solid fa-comment" style="color: #7f5af0;"></i>
-              <span class="text-main">
-                0
-              </span>
-            <% end %>
-          </div>
+        <div class="mx-auto">
+          <div class="d-flex justify-content-center mt-3">
+            <div id="favorite_btn_<%= @answer.id %>">
+              <%= render "favorites/btn", answer: @answer %>
+            </div>
 
-          <div class ="title">
-            <%= link_to("https://twitter.com/intent/tweet?url=#{@twitter_share_url}%0a%0a&text=#{@encodedText}%0a&hashtags=#{@hashtags}%0a",
-                          target: '_blank',
-                          data: { toggle: "tooltip", placement: "bottom" },
-                          title: "Xでシェア"
-                        ) do %>
-              <i class="fa-brands fa-square-x-twitter fa-lg" style="color: #000000;"></i>
-            <% end %>
+            <div class="mx-5">
+              <% if @answer.commented?(@answer) %>
+                <i class="fa-solid fa-comment" style="color: #7f5af0;"></i>
+                <span class="text-main">
+                  <%= @answer.comments.count %>
+                </span>
+              <% else %>
+                <i class="fa-solid fa-comment" style="color: #7f5af0;"></i>
+                <span class="text-main">
+                  0
+                </span>
+              <% end %>
+            </div>
+
+            <div class ="title">
+              <%= link_to("https://twitter.com/intent/tweet?url=#{@twitter_share_url}%0a%0a&text=#{@encodedText}%0a&hashtags=#{@hashtags}%0a",
+                            target: '_blank',
+                            data: { toggle: "tooltip", placement: "bottom" },
+                            title: "Xでシェア"
+                          ) do %>
+                <i class="fa-brands fa-square-x-twitter fa-lg" style="color: #000000;"></i>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="my-3 col-10">
+  <div class="my-3 col-12">
     <% @child_answers.each_with_index do |child_answers, i| %>
       <% if child_answers.rule.rule_title == "" && child_answers.rule.rule_type_id == true %>
         <div class="row mb-2 card-bg p-3">
-          <div class="col-12 ml-3">
+          <div class="col-12">
             <div class="d-flex align-items-center">
               <span class="cp_rule_1">
                 <% if child_answers.content %>
@@ -66,7 +69,7 @@
         </div>
       <% elsif child_answers.rule.rule_type_id == true %>
         <div class="row mb-2 card-bg p-3">
-          <div class="col-12 ml-3">
+          <div class="col-12 col-lg-8">
             <div class="d-flex align-items-center">
               <span class="cp_rule_1">
                 <% if child_answers.content %>
@@ -82,7 +85,7 @@
         </div>
       <% else %>
         <div class="row mb-2 card-bg p-3">
-          <div class="col-12 ml-3">
+          <div class="col-12">
             <div class="d-flex align-items-center">
               <span class="cp_rule_1">
                 <% if child_answers.content %>
@@ -99,7 +102,7 @@
       <% end %>
     <% end %>
   </div>
-  <div class="my-3 col-10 mb-5">
+  <div class="my-3 col-12 mb-5">
     <%= render 'comments/form', { answer: @answer, comment: @comment } %>
     <%= render 'comments/comments', { comments: @comments } %>
   </div>

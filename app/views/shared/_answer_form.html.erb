@@ -1,6 +1,6 @@
 <div class="mb-3">
   <% answers.each do |answer| %>
-    <div class="container p-3 mb-3 card-bg">
+    <div class="container-fluid p-3 mb-3 card-bg">
       <div class="mx-auto">
         <div class="d-flex justify-content-center">
           <%= link_to profile_path(answer.user) do %>
@@ -27,7 +27,7 @@
               <%= render "favorites/btn", answer: answer %>
             </div>
 
-            <div class="ml-3 mb-3">
+            <div class="ml-3 mb-3 text-main">
               <% if answer.commented?(answer) %>
                 <i class="fa-solid fa-comment" style="color: #7f5af0;"></i>
                 <span class="text-main">
