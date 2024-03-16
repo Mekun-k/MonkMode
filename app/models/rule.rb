@@ -1,4 +1,5 @@
 class Rule < ApplicationRecord
+  default_scope { order(:id) }
   belongs_to :user
   has_many :child_answers, dependent: :destroy
   validates :rule_content, presence: true
