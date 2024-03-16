@@ -242,7 +242,7 @@ Remove comment to apply this style to date with value equal to 0
 .channel-menu_name {
   display: inline-block;
   padding: 0 0.5rem 0 1.5rem;
-  color: #fffffe;
+  color: #fffffe !important;
   font-size: 1.4rem;
   font-weight: 900;
   line-height: 53px;
@@ -272,7 +272,7 @@ Remove comment to apply this style to date with value equal to 0
   height: 100%;
   width: 220px;
   float: left;
-  color: #fffffe;
+  color: #fffffe !important;
   background-color: #212529 !important;
   overflow-y: auto;
   overflow-x: hidden;
@@ -297,7 +297,7 @@ Remove comment to apply this style to date with value equal to 0
   margin: 0 1rem 0.1rem;
   text-transform: uppercase;
   font-weight: 700;
-  color: #fffffe;
+  color: #fffffe !important;
   width: 165px;
   position: relative;
 }
@@ -306,7 +306,7 @@ Remove comment to apply this style to date with value equal to 0
   padding: 0;
   list-style-type: none;
   text-align: left;
-  color: #fffffe;
+  color: #fffffe !important;
 }
 
 .channel {
@@ -315,16 +315,16 @@ Remove comment to apply this style to date with value equal to 0
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   padding-right: 17px;
-  color: #fffffe;
+  color: #fffffe !important;
   padding-left: 1rem;
   a {
-    color: #fffffe;
+    color: #fffffe !important;
     text-decoration: none;
     width: 100%;
     display: inline-block;
   }
   a:hover {
-    color: #fffffe;
+    color: #fffffe !important;
     text-decoration: none;
   }
 }
