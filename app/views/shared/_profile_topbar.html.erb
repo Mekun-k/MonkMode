@@ -1,0 +1,19 @@
+<div class="d-flex justify-content-center text-main card-bg">
+  <div class="row">
+    <div class="mb-3 mx-2 mt-3">
+      <%= link_to('プロフィール', profile_path(current_user), class: "text-main") %>
+    </div>
+    <div class="mb-3 mx-2 mt-3">
+      <%= link_to('アカウント設定', edit_user_registration_path, class: "text-main") %>
+    </div>
+    <div class="mb-3 mx-2 mt-3">
+      <%= link_to('通知一覧', notifications_path, class: "text-main") %>
+    </div>
+    <div class="mb-3 mx-2 mt-3">
+      <%= link_to('フォロワー', user_followers_path(current_user), class: "text-main") %>
+    </div>
+    <div class="mb-3 mx-2 mt-3">
+      <%= link_to('フォロー', user_followings_path(current_user), class: "text-main") %>
+    </div>
+  </div>
+</div>

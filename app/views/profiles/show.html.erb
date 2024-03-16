@@ -1,10 +1,10 @@
 <div class="text-main">
   <div class="row">
-    <div class="col-7">
+    <div class="col-lg-7 col-md-12">
       <%= render partial: '/shared/answer_form', locals: { answers: @answers } %>
     </div>
 
-    <div class="col-4 offset-1 text-center">
+    <div class="col-lg-4 offset-lg-1 col-md-12 text-center">
       <div class="card-bg p-4">
         <% if @user.avatar.attached? %>
           <p>
