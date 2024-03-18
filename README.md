@@ -6,8 +6,6 @@ MONKMODE:https://www.monkmode.site/
 モンクモードとは、自分の理想の夢や目標を達成するために、自分の足を引っ張る余計なものを排除して、  
 結果を出すための生活を徹底するライフスタイルのことです。  
 
-<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/3893a116-d341-45cf-96e6-46ec146ede2e">
-
 ### 想定されるユーザー層
 * 男性
 * 非モテ
@@ -32,8 +30,6 @@ MONKMODE:https://www.monkmode.site/
 このサービスは、モンクモードというライフスタイルを通じて、ユーザーが自己成長し、目標を達成するための環境を提供します。  
 具体的には、ユーザーは自己啓発や目標設定に関する情報を受け取るだけでなく、コミュニティ内で仲間と励ましあったり、共に成長したりすることができます。  
 
-このサービスの売りは、モンクモードという独自のライフスタイルを提供し、ユーザーが自己成長や目標達成に向けて積極的に行動する手助けをする点です。  
-また、オンラインコミュニティとの連携や励まし合いの文化を重視し、アプリ作成前にコミュニティ内でどんな機能が必要か募集してから作成しているので、他のサービスとは異なる独自性を持っています。  
 
 ## 2.使用技術
 
@@ -65,26 +61,25 @@ MONKMODE:https://www.monkmode.site/
 
 ## 4.機能一覧
 * 設定
-<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/d677e923-8fdd-42d6-ac51-d49805b6404a">  
-  
+<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/fbafaf61-ec3d-4225-a15b-6c9246052942">
   
 * 振り返り実施
-<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/127fb80d-0aa6-48a9-8b1e-c59e8a3e01e7"><br>
+<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/73975c10-e1c9-44f0-b7b6-4f154154e939">
 
 * 振り返り一覧
-<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/356c14a4-f36c-456f-84a1-84628a90c6e1"><br>
+* いいね機能
+<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/7687c1f7-efb8-4450-8dfe-9e3473a165f9">
 
 * コメント機能
-<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/8324be3e-1d36-4670-a323-9f1d61f97156"><br>
-  
-* いいね機能
-<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/e1b66c4c-3bc5-4357-930f-124301be90b3"><br>  
+<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/8ff600dd-31e3-45c9-98a3-fddbdc389b69">
 
 * ヒートマップカレンダー機能
-<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/6e18a103-d115-4ff4-9981-471e40b72ab1"><br>
+<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/54214e3f-84d3-4b99-a275-e7a30a2f4efd">
 
 * 通知機能
-<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/e2b6554a-b3ec-49d8-811f-640fbe463f76">
+<img width="1792" alt="image" src="https://github.com/Mekun-k/MonkMode/assets/83563470/e35d17ad-40dc-4f4c-a9a8-261661db81f1">
+
+* ユーザーのレベルアップ機能
 
 ## 認証機能
 
@@ -97,8 +92,4 @@ MONKMODE:https://www.monkmode.site/
 * Googleアカウントでのログイン・登録
 * Twitterアカウントでのログイン・登録
 
-## 今後の実装したいもの
-* レスポンシブ対応
-* 振り返り投稿の並び替え機能
-* ユーザーのレベルアップ機能
 
