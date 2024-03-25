@@ -1,16 +1,8 @@
 name: rubocop rspec
-# This workflow is triggered on pushes to the repository.
-on:
-  push:
-      branches: [ "main" ]
-    pull_request:
-      branches: [ "main" ]
-
+on: [push]
 jobs:
   build:
-    # Job name is Greeting
     name: rubocop rspec
-    # This job runs on Linux
     runs-on: ubuntu-latest
     services:
       postgres:
