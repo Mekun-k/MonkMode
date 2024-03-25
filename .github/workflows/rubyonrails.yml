@@ -1,17 +1,16 @@
-# This workflow uses actions that are not certified by GitHub.  They are
-# provided by a third-party and are governed by separate terms of service,
-# privacy policy, and support documentation.
-#
-# This workflow will install a prebuilt Ruby version, install dependencies, and
-# run tests and linters.
-name: "Ruby on Rails CI"
+name: rubocop rspec
+# This workflow is triggered on pushes to the repository.
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+      branches: [ "main" ]
+    pull_request:
+      branches: [ "main" ]
+
 jobs:
-  test:
+  build:
+    # Job name is Greeting
+    name: rubocop rspec
+    # This job runs on Linux
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -19,35 +18,36 @@ jobs:
         ports:
           - "5432:5432"
         env:
-          POSTGRES_DB: rails_test
-          POSTGRES_USER: rails
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      # Add or replace dependency steps here
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
-        with:
-          bundler-cache: true
-      # Add or replace database setup steps here
-      - name: Set up database schema
-        run: bin/rails db:schema:load
-      # Add or replace test runners here
-      - name: Run rspec
-        run: bundle exec rspec
+          POSTGRES_DB: test
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    container:
+      image: ruby:3.0.6
+      env:
+        RAILS_ENV: test
+        POSTGRES_HOST: postgres
+        RAILS_DATABASE_USER: postgres
+        RAILS_DATABASE_PASSWORD: password
 
-  lint:
-    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: bundler set up
+        run: |
+          gem install bundler
+          bundle install
+      - name: install node
+        uses: actions/setup-node@v1
         with:
-          bundler-cache: true
-      # Add or replace any other lints here
-        run: bundle exec rubocop --parallel
+          node-version: '12'
+
+      - name: db migrate
+        run: |
+          bundle exec rails db:migrate
+
+      - name: rubocop rspec
+        run: |
+          bundle exec rubocop
+          bundle exec rspec
+
